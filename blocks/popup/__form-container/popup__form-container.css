@@ -1,7 +1,4 @@
 .popup__form-container {
-    position: absolute;
-    top: 0;
-    left: 0;
     position: relative;
     display: flex;
     align-items: center;
