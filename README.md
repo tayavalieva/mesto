@@ -1,10 +1,13 @@
 # Project: Mesto
 
+Project on GitHub Pages:
+https://tayavalieva.github.io/mesto/index.html
+
 ### Description
 
 Add and share your pictures.
 
-####Technology stack: 
+Technology stack: 
 
 * HTML.
 * CSS.
