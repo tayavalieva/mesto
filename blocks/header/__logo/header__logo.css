@@ -1,0 +1,21 @@
+.header__logo {
+    max-width: 142px;
+    height: 33px;
+    margin: 0;
+    background-image: url(../../../images/header-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.header__logo:hover {
+    background-image: url(../../../images/header-logo-hover.svg);
+}
+
+@media screen and (max-width: 424px) {
+    .header__logo {
+        max-width: 103.74px;
+        height: 24.4px;
+        margin-left: 27px;
+    }
+}

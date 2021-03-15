@@ -1,0 +1,9 @@
+.profile__info-container {
+    max-width: calc(100% - (24px + 18px));
+}
+
+@media screen and (max-width: 767px) {
+    .profile__info-container {
+        max-width: calc(100% - 10px);
+    }
+}

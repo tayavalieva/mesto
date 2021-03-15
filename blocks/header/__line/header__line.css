@@ -1,0 +1,11 @@
+.header__line {
+    margin: 41px 0 0;
+    opacity: 0.7;
+    color: #545454;
+}
+
+@media screen and (max-width: 424px) {
+    .header__line {
+        margin-top: 31.6px;
+    }
+}
