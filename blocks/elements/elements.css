@@ -6,6 +6,7 @@
     padding: 0;
     max-width: calc(100% - 200px*2);
     justify-content: center;
+    list-style: none;
 }
 
 @media screen and (max-width: 1279px) {
