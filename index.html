@@ -1,125 +1,151 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto</title>
-  <link rel="stylesheet" href="pages/index.css">
-</head>
-<body class="page">
-  <div class="page__container">
-    <header class="header">
-        <a href="#" class="button" target="_blank">
-            <div class="header__logo"></div>
-        </a>
-        <hr class="header__line">
-    </header>
-   <main class="content">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+  <body class="page">
+    <div class="page__container">
+      <header class="header">
+        <a href="#" class="header__logo" target="_blank"></a>
+      </header>
+      <main class="content">
         <section class="profile">
-            <div class="profile__user">
-                <div class="profile__avatar">
-                    <img src="images/avatar.jpeg" alt="фото профиля" class="profile__pic">
-                </div>
-                <div class="profile__info">
-                    <div class="profile__info-container">
-                      <h1 class="profile__header" id="profile_header">Тимур Валиев</h1>
-                      <p class="profile__caption">Люблю кофе</p>
-                    </div>
-                    <button class="button profile__edit-button" id="open_popup_button"></button>
-                </div>
+          <div class="profile__user">
+            <div class="profile__avatar">
+              <img
+                src="images/avatar.jpeg"
+                alt="фото профиля"
+                class="profile__pic"
+              />
             </div>
-            <button class="button profile__add-button"></button>
+            <div class="profile__info">
+              <h1 class="profile__header" id="profile_header">Тимур Валиев</h1>
+              <button
+                class="button profile__edit-button"
+                type="button"
+                id="open_popup_button"
+              ></button>
+              <p class="profile__caption">Люблю кофе</p>
+            </div>
+          </div>
+          <button class="button profile__add-button" type="button"></button>
         </section>
 
         <section>
-        <ul class="elements">
+          <ul class="elements">
             <li class="card">
-                    <img src="images/kirill-pershin-1088404-unsplash.png" alt="фото" class="card__picture">
-                    <div class="card__caption">
-                        <div class="card__header-container">
-                            <h2 class="card__header">Карачаево-Черкессия</h2>
-                        </div>
-                        <div>
-                          <button class="button like-button"></button>
-                        </div>
-                    </div>
+              <img
+                src="images/kirill-pershin-1088404-unsplash.png"
+                alt="фото"
+                class="card__picture"
+              />
+              <div class="card__caption">
+                <h2 class="card__header">Карачаево-Черкессия</h2>
+                <button class="button like-button" type="button"></button>
+              </div>
             </li>
             <li class="card">
-                <img src="images/kirill-pershin-1088404-unsplash.png" alt="фото" class="card__picture">
-                <div class="card__caption">
-                    <div class="card__header-container">
-                        <h2 class="card__header">Карачаевск</h2>
-                    </div>
-                    <div>
-                      <button class="button like-button"></button>
-                    </div>
-                </div>
+              <img
+                src="images/kirill-pershin-1088404-unsplash.png"
+                alt="фото"
+                class="card__picture"
+              />
+              <div class="card__caption">
+                <h2 class="card__header">Карачаево-Черкессия</h2>
+                <button class="button like-button" type="button"></button>
+              </div>
             </li>
             <li class="card">
-                <img src="images/kirill-pershin-1088404-unsplash.png" alt="фото" class="card__picture">
-                <div class="card__caption">
-                    <div class="card__header-container">
-                        <h2 class="card__header">Карачаевск</h2>
-                    </div>
-                    <div>
-                      <button class="button like-button"></button>
-                    </div>
-                </div>
+              <img
+                src="images/kirill-pershin-1088404-unsplash.png"
+                alt="фото"
+                class="card__picture"
+              />
+              <div class="card__caption">
+                <h2 class="card__header">Карачаево-Черкессия</h2>
+                <button class="button like-button" type="button"></button>
+              </div>
             </li>
             <li class="card">
-                <img src="images/kirill-pershin-1404681-unsplash.png" alt="фото" class="card__picture">
-                <div class="card__caption">
-                    <div class="card__header-container">
-                        <h2 class="card__header">Кафе</h2>
-                    </div>
-                    <div>
-                      <button class="button like-button"></button>
-                    </div>
-                </div>
+              <img
+                src="images/kirill-pershin-1088404-unsplash.png"
+                alt="фото"
+                class="card__picture"
+              />
+              <div class="card__caption">
+                <h2 class="card__header">Карачаево-Черкессия</h2>
+                <button class="button like-button" type="button"></button>
+              </div>
             </li>
             <li class="card">
-                <img src="images/kirill-pershin-1404681-unsplash.png" alt="фото" class="card__picture">
-                <div class="card__caption">
-                    <div class="card__header-container">
-                        <h2 class="card__header">Эльбрус</h2>
-                    </div>
-                    <div>
-                      <button class="button like-button"></button>
-                    </div>
-                </div>
+              <img
+                src="images/kirill-pershin-1088404-unsplash.png"
+                alt="фото"
+                class="card__picture"
+              />
+              <div class="card__caption">
+                <h2 class="card__header">Карачаево-Черкессия</h2>
+                <button class="button like-button" type="button"></button>
+              </div>
             </li>
             <li class="card">
-                <img src="images/kirill-pershin-1556355-unsplash.png" alt="фото" class="card__picture">
-                <div class="card__caption">
-                    <div class="card__header-container">
-                        <h2 class="card__header">Домбай</h2>
-                    </div>
-                    <div>
-                      <button class="button like-button"></button>
-                    </div>
-                </div>
+              <img
+                src="images/kirill-pershin-1088404-unsplash.png"
+                alt="фото"
+                class="card__picture"
+              />
+              <div class="card__caption">
+                <h2 class="card__header">Карачаево-Черкессия</h2>
+                <button class="button like-button" type="button"></button>
+              </div>
             </li>
-        </ul>
+          </ul>
         </section>
-    
-    </main> 
-    <footer class="footer">
+      </main>
+      <footer class="footer">
         <a href="#" class="footer__link button" target="_blank">
-            <p class="footer__caption">&#169; 2020 Mesto Russia</p>
+          <p class="footer__caption">&#169; 2020 Mesto Russia</p>
         </a>
-    </footer>
-    <section class="popup">
+      </footer>
+      <div class="popup">
         <div class="popup__form-container">
-        <form class="popup__form" id="popup_form">
+          <form class="popup__form" id="popup_form" name="user_info">
             <h2 class="popup__header">Редактировать профиль</h2>
-            <input type="text" placeholder="Name" class="popup__input" id="popup__input_type_name">
-            <input type="text" placeholder="User Info" class="popup__input" id="popup__input_type_job">
-            <button class="popup__save-button button" id="submit_popup_button">Сохранить</button>
-            <button class="popup__close-button" id="close_popup_button"></button>
-        </form>
+            <input
+              type="text"
+              placeholder="Name"
+              class="popup__input popup__input_type_name"
+              id="popup__input_type_name"
+              name="user_name"
+              required
+            />
+            <input
+              type="text"
+              placeholder="User Info"
+              class="popup__input popup__input_type_job"
+              id="popup__input_type_job"
+              name="about"
+              required
+            />
+            <button
+              class="popup__save-button button"
+              id="submit_popup_button"
+              type="submit"
+            >
+              Сохранить
+            </button>
+            <button
+              class="popup__close-button"
+              id="close_popup_button"
+              type="reset"
+            ></button>
+          </form>
+        </div>
       </div>
-    </section>
-  </div>
-  <script src="scripts/index.js"></script>
-</body>
+    </div>
+    <script src="scripts/index.js"></script>
+  </body>
 </html>

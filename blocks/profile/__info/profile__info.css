@@ -1,12 +1,26 @@
 .profile__info {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    margin-left: 30px;
+  display: grid;
+  grid-gap: 16px 18px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  min-width: 60%;
+  max-width: calc(100% - 120px - 30px);
+  justify-content: center;
+  align-items: baseline;
+  margin-left: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    min-width: 80%;
+    max-width: 80%;
+    grid-gap: 14px 10px;
+    margin: 26px 0 0;
+  }
 }
 
 @media screen and (max-width: 454px) {
   .profile__info {
-      margin: 26px 0 0;
+    max-width: 100%;
   }
 }

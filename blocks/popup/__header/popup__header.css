@@ -1,16 +1,16 @@
 .popup__header {
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29px;
-    color: black;
-    margin: 34px 36px 0;
-    font-family: inherit;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: black;
+  margin: 34px 36px 0;
+  font-family: inherit;
 }
 
 @media screen and (max-width: 1023px) {
-    .popup__header {
-        font-size: 18px;
-        line-height: 22px;
-        margin: 25px 22px 0;
-    }
+  .popup__header {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 25px 22px 0;
+  }
 }

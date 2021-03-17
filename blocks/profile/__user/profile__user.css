@@ -1,17 +1,21 @@
 .profile__user {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: calc(100% - 150px - 17px);
 }
 
 @media screen and (max-width: 767px) {
-    .profile__user {
-        justify-content: space-between;
-    }
+  .profile__user {
+    justify-content: space-between;
+    flex-direction: column;
+    min-width: 60%;
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 454px) {
-    .profile__user {
-        flex-direction: column;
-    }
+  .profile__user {
+    flex-direction: column;
+  }
 }

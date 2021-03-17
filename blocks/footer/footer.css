@@ -1,18 +1,17 @@
 .footer {
-    margin: 67px 200px 60px;
+  margin: 67px 200px 60px;
 }
 
 @media screen and (max-width: 1023px) {
-    .footer {
-        margin: 67px 40px 60px;
-    }
-
+  .footer {
+    margin: 67px 40px 60px;
+  }
 }
 
-
 @media screen and (max-width: 767px) {
-    .footer {
-        margin-top: 48px;
-        margin-bottom: 36px;
-    }
+  .footer {
+    margin-top: 48px;
+    margin-bottom: 36px;
+    margin-left: 19px;
+  }
 }
