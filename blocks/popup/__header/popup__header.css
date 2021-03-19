@@ -3,7 +3,7 @@
   font-size: 24px;
   line-height: 29px;
   color: black;
-  margin: 34px 36px 0;
+  margin: 0 36px;
   font-family: inherit;
 }
 
@@ -11,6 +11,6 @@
   .popup__header {
     font-size: 18px;
     line-height: 22px;
-    margin: 25px 22px 0;
+    margin: 0 22px;
   }
 }

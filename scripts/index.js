@@ -1,8 +1,8 @@
 let popup = document.querySelector(".popup");
 
-let openPopupButton = document.querySelector("#open_popup_button");
-let closePopupButton = document.querySelector("#close_popup_button");
-let formElement = document.querySelector("#popup_form");
+let openPopupButton = document.querySelector(".profile__edit-button");
+let closePopupButton = document.querySelector(".popup__close-button");
+let formElement = document.querySelector(".popup__form");
 
 //current values
 let currentName = document.querySelector(".profile__header");

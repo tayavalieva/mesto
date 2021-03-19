@@ -6,7 +6,6 @@
   min-width: 60%;
   max-width: calc(100% - 120px - 30px);
   justify-content: center;
-  align-items: baseline;
   margin-left: 30px;
 }
 
