@@ -2,6 +2,7 @@ let popup = document.querySelector(".popup");
 
 let openPopupButton = document.querySelector(".profile__edit-button");
 let closePopupButton = document.querySelector(".popup__close-button");
+let popupOverlay = document.querySelector(".popup__overlay");
 let formElement = document.querySelector(".popup__form");
 
 //current values
@@ -32,4 +33,5 @@ function formSubmitHandler(evt) {
 
 openPopupButton.addEventListener("click", openPopup);
 closePopupButton.addEventListener("click", closePopup);
+popupOverlay.addEventListener("click", closePopup);
 formElement.addEventListener("submit", formSubmitHandler);
