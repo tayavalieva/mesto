@@ -111,7 +111,7 @@
         </a>
       </footer>
 
-      <div class="popup">
+      <div class="popup popup-edit">
         <div class="popup__overlay"></div>
         <div class="popup__container">
           <form class="popup__form" id="popup_form" name="user_info">
@@ -142,6 +142,43 @@
           </form>
           <button
             class="popup__close-button"
+            id="close_popup_button"
+            type="reset"
+          ></button>
+        </div>
+      </div>
+
+      <div class="popup popup-add-photo">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+          <form class="popup__form" id="popup_form" name="add_new_photo">
+            <h2 class="popup__header">Новое место</h2>
+            <input
+              type="text"
+              placeholder="Название"
+              class="popup__input popup__input_type_name"
+              id="popup__input_type_name"
+              name="place_name"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Ссылка на картинку"
+              class="popup__input popup__input_type_job"
+              id="popup__input_type_job"
+              name="photo_link"
+              required
+            />
+            <button
+              class="popup__save-button button"
+              id="submit_popup_button"
+              type="submit"
+            >
+              Создать
+            </button>
+          </form>
+          <button
+            class="popup__close-button popup-add-photo-close"
             id="close_popup_button"
             type="reset"
           ></button>

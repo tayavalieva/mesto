@@ -1,7 +1,16 @@
-let popup = document.querySelector(".popup");
+let popup = document.querySelector(".popup-edit");
+let popupAddPhoto = document.querySelector(".popup-add-photo");
+console.log(popup);
+
+console.log(popupAddPhoto);
 
 let openPopupButton = document.querySelector(".profile__edit-button");
+const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
+
 let closePopupButton = document.querySelector(".popup__close-button");
+const closePopupAddPhotoButton = document.querySelector(
+  ".popup-add-photo-close"
+);
 let popupOverlay = document.querySelector(".popup__overlay");
 let formElement = document.querySelector(".popup__form");
 
@@ -53,8 +62,16 @@ function openPopup() {
   jobInput.value = currentJob.textContent;
 }
 
+function openPopupAddPhoto() {
+  popupAddPhoto.classList.add("popup_opened");
+}
+
 function closePopup() {
   popup.classList.remove("popup_opened");
+}
+
+function closePopupAddPhoto() {
+  popupAddPhoto.classList.remove("popup_opened");
 }
 
 function formSubmitHandler(evt) {
@@ -65,6 +82,8 @@ function formSubmitHandler(evt) {
 }
 
 openPopupButton.addEventListener("click", openPopup);
+openAddPhotoPopupButton.addEventListener("click", openPopupAddPhoto);
 closePopupButton.addEventListener("click", closePopup);
+closePopupAddPhotoButton.addEventListener("click", closePopupAddPhoto);
 popupOverlay.addEventListener("click", closePopup);
 formElement.addEventListener("submit", formSubmitHandler);
