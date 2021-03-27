@@ -1,8 +1,5 @@
 let popup = document.querySelector(".popup-edit");
-let popupAddPhoto = document.querySelector(".popup-add-photo");
-console.log(popup);
-
-console.log(popupAddPhoto);
+const popupAddPhoto = document.querySelector(".popup-add-photo");
 
 let openPopupButton = document.querySelector(".profile__edit-button");
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
@@ -21,6 +18,14 @@ let currentJob = document.querySelector(".profile__caption");
 //input elements
 let nameInput = document.querySelector(".popup__input_type_name");
 let jobInput = document.querySelector(".popup__input_type_job");
+
+//show default cards
+
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+
+const elementsList = document.querySelector(".elements");
 
 const initialCards = [
   {
@@ -55,6 +60,40 @@ const initialCards = [
   },
 ];
 
+const addPhotoForm = popupAddPhoto.querySelector(".popup__form");
+const addPhotoInputTitle = addPhotoForm.querySelector(
+  ".popup__input_type_name"
+);
+const addPhotoInputLink = addPhotoForm.querySelector(".popup__input_type_job");
+
+function insertCard(item) {
+  const card = cardTemplate.cloneNode(true);
+  const cardImg = card.querySelector(".card__picture");
+  cardImg.setAttribute("src", item.link);
+  const cardTitle = card.querySelector(".card__header");
+  cardTitle.textContent = item.name;
+
+  const deleteBtn = card.querySelector(".card__delete-icon");
+  deleteBtn.addEventListener("click", () => card.remove());
+
+  elementsList.prepend(card);
+}
+
+const addPhotoFormHandler = (e) => {
+  e.preventDefault();
+  const newPhoto = {
+    name: addPhotoInputTitle.value,
+    link: addPhotoInputLink.value,
+  };
+  insertCard(newPhoto);
+  closePopupAddPhoto();
+};
+
+addPhotoForm.addEventListener("submit", addPhotoFormHandler);
+
+const cardsShown = initialCards.forEach((item) => insertCard(item));
+//const cardsShown = initialCards.forEach(insertCard);
+
 function openPopup() {
   popup.classList.add("popup_opened");
   //fill popup form inputs with current values
@@ -80,6 +119,14 @@ function formSubmitHandler(evt) {
   currentJob.textContent = jobInput.value;
   closePopup();
 }
+
+const likeBtns = document
+  .querySelectorAll(".like-button")
+  .forEach((item) =>
+    item.addEventListener("click", () =>
+      item.classList.toggle("like-button_active")
+    )
+  );
 
 openPopupButton.addEventListener("click", openPopup);
 openAddPhotoPopupButton.addEventListener("click", openPopupAddPhoto);

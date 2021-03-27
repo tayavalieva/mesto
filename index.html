@@ -35,74 +35,7 @@
         </section>
 
         <section>
-          <ul class="elements">
-            <li class="card">
-              <img
-                src="images/kirill-pershin-1088404-unsplash.png"
-                alt="фото"
-                class="card__picture"
-              />
-              <div class="card__caption">
-                <h2 class="card__header">Карачаево-Черкессия</h2>
-                <button class="button like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/kirill-pershin-1088404-unsplash.png"
-                alt="фото"
-                class="card__picture"
-              />
-              <div class="card__caption">
-                <h2 class="card__header">Карачаево-Черкессия</h2>
-                <button class="button like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/kirill-pershin-1088404-unsplash.png"
-                alt="фото"
-                class="card__picture"
-              />
-              <div class="card__caption">
-                <h2 class="card__header">Карачаево-Черкессия</h2>
-                <button class="button like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/kirill-pershin-1088404-unsplash.png"
-                alt="фото"
-                class="card__picture"
-              />
-              <div class="card__caption">
-                <h2 class="card__header">Карачаево-Черкессия</h2>
-                <button class="button like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/kirill-pershin-1088404-unsplash.png"
-                alt="фото"
-                class="card__picture"
-              />
-              <div class="card__caption">
-                <h2 class="card__header">Карачаево-Черкессия</h2>
-                <button class="button like-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/kirill-pershin-1088404-unsplash.png"
-                alt="фото"
-                class="card__picture"
-              />
-              <div class="card__caption">
-                <h2 class="card__header">Карачаево-Черкессия</h2>
-                <button class="button like-button" type="button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="elements"></ul>
         </section>
       </main>
       <footer class="footer">
@@ -184,7 +117,32 @@
           ></button>
         </div>
       </div>
+
+      <div class="popup popup-show-photo">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+          <figure>
+            <img src="" alt="Фото" />
+            <figcaption></figcaption>
+          </figure>
+          <button
+            class="popup__close-button popup-add-photo-close"
+            id="close_popup_button"
+            type="reset"
+          ></button>
+        </div>
+      </div>
     </div>
+    <template id="card-template">
+      <li class="card">
+        <img src="" alt="фото" class="card__picture" />
+        <button class="card__delete-icon" type="button"></button>
+        <div class="card__caption">
+          <h2 class="card__header"></h2>
+          <button class="button like-button" type="button"></button>
+        </div>
+      </li>
+    </template>
     <script src="scripts/index.js"></script>
   </body>
 </html>
