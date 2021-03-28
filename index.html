@@ -47,7 +47,11 @@
       <div class="popup popup-edit">
         <div class="popup__overlay"></div>
         <div class="popup__container">
-          <form class="popup__form" id="popup_form" name="user_info">
+          <form
+            class="popup__form"
+            id="popup_form_edit_profile"
+            name="user_info"
+          >
             <h2 class="popup__header">Редактировать профиль</h2>
             <input
               type="text"
@@ -84,7 +88,11 @@
       <div class="popup popup-add-photo">
         <div class="popup__overlay"></div>
         <div class="popup__container">
-          <form class="popup__form" id="popup_form" name="add_new_photo">
+          <form
+            class="popup__form"
+            id="popup_form_add_photo"
+            name="add_new_photo"
+          >
             <h2 class="popup__header">Новое место</h2>
             <input
               type="text"
@@ -111,7 +119,7 @@
             </button>
           </form>
           <button
-            class="popup__close-button popup-add-photo-close"
+            class="popup__close-button"
             id="close_popup_button"
             type="reset"
           ></button>
@@ -121,12 +129,12 @@
       <div class="popup popup-image">
         <div class="popup__overlay"></div>
         <div class="popup__container">
-          <figure>
-            <img src="" alt="Фото" />
-            <figcaption></figcaption>
+          <figure class="popup-image__figure">
+            <img src="#" alt="Фото" class="popup-image__image" />
+            <figcaption class="popup-image__caption"></figcaption>
           </figure>
           <button
-            class="popup__close-button popup-add-photo-close"
+            class="popup__close-button"
             id="close_popup_button"
             type="reset"
           ></button>
@@ -135,7 +143,7 @@
     </div>
     <template id="card-template">
       <li class="card">
-        <img src="" alt="фото" class="card__picture" />
+        <img src="#" alt="фото" class="card__picture" />
         <button class="card__delete-icon" type="button"></button>
         <div class="card__caption">
           <h2 class="card__header"></h2>
