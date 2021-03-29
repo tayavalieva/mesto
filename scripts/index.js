@@ -77,6 +77,7 @@ function insertCard(item) {
   const card = cardTemplate.cloneNode(true);
   const cardImg = card.querySelector(".card__picture");
   cardImg.setAttribute("src", item.link);
+  cardImg.setAttribute("alt", item.name);
   const cardTitle = card.querySelector(".card__header");
   cardTitle.textContent = item.name;
 
@@ -127,12 +128,6 @@ function formEditSubmitHandler(e) {
 }
 
 formElement.addEventListener("submit", formEditSubmitHandler);
-
-document.querySelectorAll(".like-button").forEach((item) =>
-  item.addEventListener("click", () => {
-    item.classList.toggle("like-button_active");
-  })
-);
 
 openPopupButton.addEventListener("click", () => {
   nameInput.value = currentName.textContent;
