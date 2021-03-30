@@ -30,39 +30,6 @@ const cardTemplate = document
 
 const elementsList = document.querySelector(".elements");
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 const addPhotoForm = popupAddPhoto.querySelector(".popup__form");
 const addPhotoInputTitle = addPhotoForm.querySelector(
   ".popup__input_type_name"
@@ -73,7 +40,7 @@ const addPhotoInputLink = addPhotoForm.querySelector(".popup__input_type_job");
 const popupImg = popupImage.querySelector(".popup-image__image");
 const popupImgCaption = popupImage.querySelector(".popup-image__caption");
 
-function insertCard(item) {
+function createCard(item) {
   const card = cardTemplate.cloneNode(true);
   const cardImg = card.querySelector(".card__picture");
   cardImg.setAttribute("src", item.link);
@@ -92,9 +59,13 @@ function insertCard(item) {
   cardImg.addEventListener("click", () => {
     popupImg.src = item.link;
     popupImgCaption.textContent = item.name;
+    popupImg.alt = item.name;
     openPopup(popupImage);
   });
+  return card;
+}
 
+function insertCard(card) {
   elementsList.prepend(card);
 }
 
@@ -104,13 +75,13 @@ const addPhotoFormHandler = (e) => {
     name: addPhotoInputTitle.value,
     link: addPhotoInputLink.value,
   };
-  insertCard(newPhoto);
+  insertCard(createCard(newPhoto));
   closePopup(popupAddPhoto);
 };
 
 addPhotoForm.addEventListener("submit", addPhotoFormHandler);
 
-initialCards.forEach((item) => insertCard(item));
+initialCards.forEach((item) => insertCard(createCard(item)));
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
