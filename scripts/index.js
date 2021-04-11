@@ -3,7 +3,7 @@ const popupEditProfile = document.querySelector(".popup-edit");
 const popupAddPhoto = document.querySelector(".popup-add-photo");
 const popupImage = document.querySelector(".popup-image");
 
-const openPopupButton = document.querySelector(".profile__edit-button");
+const openPopupEditButton = document.querySelector(".profile__edit-button");
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
 
 const closePopupButton = popupEditProfile.querySelector(".popup__close-button");
@@ -14,29 +14,30 @@ const closePopupImageButton = popupImage.querySelector(".popup__close-button");
 
 const popupOverlays = document.querySelectorAll(".popup__overlay");
 const formElement = document.querySelector(".popup__form");
+const elementsList = document.querySelector(".elements");
 
 //current values
 const currentName = document.querySelector(".profile__header");
 const currentJob = document.querySelector(".profile__caption");
-
 //input elements
-const nameInput = document.querySelector(".popup__input_type_name");
-const jobInput = document.querySelector(".popup__input_type_job");
+const nameInput = document.querySelector(".popup-edit__input_type_name");
+
+const jobInput = document.querySelector(".popup-edit__input_type_job");
 
 //show default cards
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
-const elementsList = document.querySelector(".elements");
-
+//popup image
 const addPhotoForm = popupAddPhoto.querySelector(".popup__form");
 const addPhotoInputTitle = addPhotoForm.querySelector(
-  ".popup__input_type_name"
+  ".popup-add-photo__input_type_name"
 );
-const addPhotoInputLink = addPhotoForm.querySelector(".popup__input_type_job");
+const addPhotoInputLink = addPhotoForm.querySelector(
+  ".popup-add-photo__input_type_link"
+);
 
-//popup image
 const popupImg = popupImage.querySelector(".popup-image__image");
 const popupImgCaption = popupImage.querySelector(".popup-image__caption");
 
@@ -83,12 +84,24 @@ addPhotoForm.addEventListener("submit", addPhotoFormHandler);
 
 initialCards.forEach((item) => insertCard(createCard(item)));
 
+const getForm = (popup) => popup.querySelector(".form");
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  setButtonState(getForm(popup));
+}
+
+function resetPopup(popup) {
+  const formElement = getForm(popup);
+  const inputElements = getFormInputs(formElement);
+  inputElements.forEach((inputElement) =>
+    hideInputError(formElement, inputElement)
+  );
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  resetPopup(popup);
 }
 
 function formEditSubmitHandler(e) {
@@ -100,7 +113,7 @@ function formEditSubmitHandler(e) {
 
 formElement.addEventListener("submit", formEditSubmitHandler);
 
-openPopupButton.addEventListener("click", () => {
+openPopupEditButton.addEventListener("click", () => {
   nameInput.value = currentName.textContent;
   jobInput.value = currentJob.textContent;
   openPopup(popupEditProfile);
@@ -112,6 +125,20 @@ openAddPhotoPopupButton.addEventListener("click", () => {
   openPopup(popupAddPhoto);
 });
 
+//Overlay click closes popup
+document.querySelectorAll(".popup").forEach((popup) => {
+  popup
+    .querySelector(".popup__overlay")
+    .addEventListener("click", () => closePopup(popup));
+});
+
+//Esc closes popup
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    document.querySelectorAll(".popup").forEach(closePopup);
+  }
+});
+
 closePopupButton.addEventListener("click", () => closePopup(popupEditProfile));
 
 closePopupAddPhotoButton.addEventListener("click", () =>
@@ -119,9 +146,3 @@ closePopupAddPhotoButton.addEventListener("click", () =>
 );
 
 closePopupImageButton.addEventListener("click", () => closePopup(popupImage));
-
-popupOverlays.forEach((item) =>
-  item.addEventListener("click", () => {
-    document.querySelectorAll(".popup").forEach(closePopup);
-  })
-);

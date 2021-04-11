@@ -48,27 +48,47 @@
         <div class="popup__overlay"></div>
         <div class="popup__container">
           <form
-            class="popup__form"
+            class="popup__form form"
             id="popup_form_edit_profile"
             name="user_info"
+            novalidate
           >
             <h2 class="popup__header">Редактировать профиль</h2>
-            <input
-              type="text"
-              placeholder="Name"
-              class="popup__input popup__input_type_name"
-              id="popup__input_type_name"
-              name="user_name"
-              required
-            />
-            <input
-              type="text"
-              placeholder="User Info"
-              class="popup__input popup__input_type_job"
-              id="popup__input_type_job"
-              name="about"
-              required
-            />
+            <label class="popup__form-field" for="popup__input_type_name">
+              <input
+                type="text"
+                placeholder="Имя"
+                class="popup__input popup-edit__input_type_name"
+                id="popup__input_type_name"
+                name="user_name"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span
+                class="popup__input_type_name-error popup__input-error"
+                id="profile-name-error"
+              ></span>
+            </label>
+
+            <label class="popup__form-field" for="popup-edit__input_type_job">
+              <input
+                type="text"
+                placeholder="О себе"
+                class="popup__input popup-edit__input_type_job"
+                id="popup-edit__input_type_job"
+                name="about"
+                minlength="2"
+                max="200"
+                required
+              />
+              <span
+                class="popup-edit__input_type_job-error popup__input-error"
+                id="profile-job-error"
+              >
+              </span>
+            </label>
+
             <button
               class="popup__save-button button"
               id="submit_popup-edit_button"
@@ -89,27 +109,47 @@
         <div class="popup__overlay"></div>
         <div class="popup__container">
           <form
-            class="popup__form"
+            class="popup__form form"
             id="popup_form_add_photo"
             name="add_new_photo"
+            novalidate
           >
             <h2 class="popup__header">Новое место</h2>
-            <input
-              type="text"
-              placeholder="Название"
-              class="popup__input popup__input_type_name"
-              id="popup__input_type_place"
-              name="place_name"
-              required
-            />
-            <input
-              type="text"
-              placeholder="Ссылка на картинку"
-              class="popup__input popup__input_type_job"
-              id="popup__input_type_link"
-              name="photo_link"
-              required
-            />
+            <label
+              class="popup__form-field"
+              for="popup-add-photo__input_type_place"
+            >
+              <input
+                type="text"
+                placeholder="Название"
+                class="popup__input popup-add-photo__input_type_name"
+                id="popup-add-photo__input_type_place"
+                name="place_name"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span
+                class="popup-add-photo__input_type_place-error popup__input-error"
+              ></span>
+            </label>
+            <label
+              class="popup__form-field"
+              for="popup-add-photo__input_type_link"
+            >
+              <input
+                type="url"
+                placeholder="Ссылка на картинку"
+                class="popup__input popup-add-photo__input_type_link"
+                id="popup-add-photo__input_type_link"
+                name="photo_link"
+                required
+              />
+              <span
+                class="popup-add-photo__input_type_link-error popup__input-error"
+              ></span>
+            </label>
+
             <button
               class="popup__save-button button"
               id="submit_popup-add_button"
@@ -152,6 +192,7 @@
       </li>
     </template>
     <script src="scripts/initial-сards.js"></script>
+    <script src="scripts/validate.js"></script>
     <script src="scripts/index.js"></script>
   </body>
 </html>
