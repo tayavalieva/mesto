@@ -84,24 +84,37 @@ addPhotoForm.addEventListener("submit", addPhotoFormHandler);
 
 initialCards.forEach((item) => insertCard(createCard(item)));
 
-const getForm = (popup) => popup.querySelector(".form");
+let activeEscHandler = null;
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  setButtonState(getForm(popup));
+
+  setButtonState(getForm(popup, selectors), selectors);
+  activeEscHandler = (evt) => {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
+  };
+
+  document.addEventListener("keydown", activeEscHandler);
 }
 
 function resetPopup(popup) {
-  const formElement = getForm(popup);
-  const inputElements = getFormInputs(formElement);
+  const formElement = getForm(popup, selectors);
+  if (formElement === null || formElement === undefined) {
+    return;
+  }
+  const inputElements = getFormInputs(formElement, selectors);
   inputElements.forEach((inputElement) =>
-    hideInputError(formElement, inputElement)
+    hideInputError(formElement, inputElement, selectors)
   );
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   resetPopup(popup);
+  document.removeEventListener("keydown", activeEscHandler);
+  activeEscHandler = null;
 }
 
 function formEditSubmitHandler(e) {
@@ -130,13 +143,6 @@ document.querySelectorAll(".popup").forEach((popup) => {
   popup
     .querySelector(".popup__overlay")
     .addEventListener("click", () => closePopup(popup));
-});
-
-//Esc closes popup
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    document.querySelectorAll(".popup").forEach(closePopup);
-  }
 });
 
 closePopupButton.addEventListener("click", () => closePopup(popupEditProfile));
