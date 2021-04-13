@@ -32,11 +32,9 @@ const cardTemplate = document
 //popup image
 const addPhotoForm = popupAddPhoto.querySelector(".popup__form");
 const addPhotoInputTitle = addPhotoForm.querySelector(
-  ".popup-add-photo__input_type_name"
+  ".popup__input_type_place"
 );
-const addPhotoInputLink = addPhotoForm.querySelector(
-  ".popup-add-photo__input_type_link"
-);
+const addPhotoInputLink = addPhotoForm.querySelector(".popup__input_type_link");
 
 const popupImg = popupImage.querySelector(".popup-image__image");
 const popupImgCaption = popupImage.querySelector(".popup-image__caption");
