@@ -27,19 +27,20 @@ const hideInputError = (
   inputElement.classList.remove(inputErrorClass);
 };
 
+//Функция setButtonState выполняет сразу две задачи: изменяет состояние кнопки сабмита
+//и проверяет инпуты на валидность.
+// Функция должна выполнять только одну задачу, в данном случае, менять состояние кнопки сабмита.
+//Проверку инпутов на валидность нужно перенести в другую функцию
+
 const setButtonState = (
   formElement,
-  { inputSelector, submitButtonSelector, inactiveButtonClass }
+  hasInvalidInput,
+  { submitButtonSelector, inactiveButtonClass }
 ) => {
   if (formElement === null || formElement === undefined) {
     return;
   }
-  const inputList = getFormInputs(formElement, { inputSelector });
   const buttonElement = formElement.querySelector(submitButtonSelector);
-
-  const hasInvalidInput = inputList.some(
-    (inputElement) => !isValid(inputElement)
-  );
 
   if (hasInvalidInput) {
     buttonElement.setAttribute("disabled", true);
@@ -51,6 +52,11 @@ const setButtonState = (
 };
 
 const isValid = (inputElement) => inputElement.validity.valid;
+
+const hasInvalidInput = (formElement, { inputSelector }) => {
+  const inputList = getFormInputs(formElement, { inputSelector });
+  return inputList.some((inputElement) => !isValid(inputElement));
+};
 
 const checkValidity = (
   formElement,
@@ -81,7 +87,11 @@ const setEventListeners = (formElement, selectors) => {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkValidity(formElement, inputElement, selectors);
-      setButtonState(formElement, selectors);
+      setButtonState(
+        formElement,
+        hasInvalidInput(formElement, selectors),
+        selectors
+      );
     });
   });
 };

@@ -82,18 +82,25 @@ addPhotoForm.addEventListener("submit", addPhotoFormHandler);
 
 initialCards.forEach((item) => insertCard(createCard(item)));
 
-let activeEscHandler = null;
+const activeEscHandler = (evt) => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    if (openedPopup) closePopup(openedPopup);
+  }
+};
+
+function setPopupButtonState(popup) {
+  const formElement = getForm(popup, selectors);
+
+  setButtonState(
+    formElement,
+    hasInvalidInput(formElement, selectors),
+    selectors
+  );
+}
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-
-  setButtonState(getForm(popup, selectors), selectors);
-  activeEscHandler = (evt) => {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  };
-
   document.addEventListener("keydown", activeEscHandler);
 }
 
@@ -110,9 +117,7 @@ function resetPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  resetPopup(popup);
   document.removeEventListener("keydown", activeEscHandler);
-  activeEscHandler = null;
 }
 
 function formEditSubmitHandler(e) {
@@ -127,12 +132,16 @@ formElement.addEventListener("submit", formEditSubmitHandler);
 openPopupEditButton.addEventListener("click", () => {
   nameInput.value = currentName.textContent;
   jobInput.value = currentJob.textContent;
+  resetPopup(popupEditProfile);
+  setPopupButtonState(popupEditProfile);
   openPopup(popupEditProfile);
 });
 
 openAddPhotoPopupButton.addEventListener("click", () => {
   addPhotoInputTitle.value = "";
   addPhotoInputLink.value = "";
+  resetPopup(popupAddPhoto);
+  setPopupButtonState(popupAddPhoto);
   openPopup(popupAddPhoto);
 });
 
