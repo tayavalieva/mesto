@@ -20,9 +20,9 @@ const elementsList = document.querySelector(".elements");
 const currentName = document.querySelector(".profile__header");
 const currentJob = document.querySelector(".profile__caption");
 //input elements
-const nameInput = document.querySelector(".popup-edit__input_type_name");
+const nameInput = document.querySelector(".popup__input_type_name");
 
-const jobInput = document.querySelector(".popup-edit__input_type_job");
+const jobInput = document.querySelector(".popup__input_type_job");
 
 //show default cards
 const cardTemplate = document

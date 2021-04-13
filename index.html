@@ -54,11 +54,11 @@
             novalidate
           >
             <h2 class="popup__header">Редактировать профиль</h2>
-            <label class="popup__label" for="popup-edit__input_type_name">
+            <label class="popup__label" for="popup__input_type_name">
               <input
                 type="text"
                 placeholder="Имя"
-                class="popup__input"
+                class="popup__input popup__input_type_name"
                 id="popup-edit__name"
                 name="user_name"
                 minlength="2"
@@ -71,11 +71,11 @@
               ></span>
             </label>
 
-            <label class="popup__label" for="popup-edit__input_type_job">
+            <label class="popup__label" for="popup__input_type_job">
               <input
                 type="text"
                 placeholder="О себе"
-                class="popup__input popup-edit__input_type_job"
+                class="popup__input popup__input_type_job"
                 id="popup-edit__job"
                 name="about"
                 minlength="2"
@@ -115,10 +115,7 @@
             novalidate
           >
             <h2 class="popup__header">Новое место</h2>
-            <label
-              class="popup__form-field"
-              for="popup-add-photo__input_type_place"
-            >
+            <label class="popup__label" for="popup-add-photo__input_type_place">
               <input
                 type="text"
                 placeholder="Название"
@@ -133,10 +130,7 @@
                 class="popup-add-photo__place-error popup__input-error"
               ></span>
             </label>
-            <label
-              class="popup__form-field"
-              for="popup-add-photo__input_type_link"
-            >
+            <label class="popup__label" for="popup-add-photo__input_type_link">
               <input
                 type="url"
                 placeholder="Ссылка на картинку"
