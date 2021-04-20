@@ -41,10 +41,10 @@ const popupImgCaption = popupImage.querySelector(".popup-image__caption");
 
 function createCard(item) {
   const card = cardTemplate.cloneNode(true);
-  const cardImg = card.querySelector(".card__picture");
+  const cardImg = card.querySelector(".card__image");
   cardImg.setAttribute("src", item.link);
   cardImg.setAttribute("alt", item.name);
-  const cardTitle = card.querySelector(".card__header");
+  const cardTitle = card.querySelector(".card__name");
   cardTitle.textContent = item.name;
 
   const deleteBtn = card.querySelector(".card__delete-icon");

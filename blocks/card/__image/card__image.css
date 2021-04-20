@@ -1,4 +1,4 @@
-.card__picture {
+.card__image {
   width: 282px;
   height: 282px;
   object-fit: cover;
@@ -8,6 +8,6 @@
   border-radius: 10px 10px 0px 0px;
 }
 
-.card__picture:hover {
+.card__image:hover {
   cursor: pointer;
 }
