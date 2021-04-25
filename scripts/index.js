@@ -1,7 +1,9 @@
+import { Card, CARD_TEMPLATE_SELECTOR } from "./card.js";
+
 //popups
 const popupEditProfile = document.querySelector(".popup-edit");
 const popupAddPhoto = document.querySelector(".popup-add-photo");
-const popupImage = document.querySelector(".popup-image");
+export const popupImage = document.querySelector(".popup-image");
 
 const openPopupEditButton = document.querySelector(".profile__edit-button");
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
@@ -24,11 +26,6 @@ const nameInput = document.querySelector(".popup__input_type_name");
 
 const jobInput = document.querySelector(".popup__input_type_job");
 
-//show default cards
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-
 //popup image
 const addPhotoForm = popupAddPhoto.querySelector(".popup__form");
 const addPhotoInputTitle = addPhotoForm.querySelector(
@@ -36,8 +33,15 @@ const addPhotoInputTitle = addPhotoForm.querySelector(
 );
 const addPhotoInputLink = addPhotoForm.querySelector(".popup__input_type_link");
 
-const popupImg = popupImage.querySelector(".popup-image__image");
-const popupImgCaption = popupImage.querySelector(".popup-image__caption");
+export const popupImg = popupImage.querySelector(".popup-image__image");
+export const popupImgCaption = popupImage.querySelector(
+  ".popup-image__caption"
+);
+
+//show default cards
+const cardTemplate = document
+  .querySelector(".card-template")
+  .content.querySelector(".card");
 
 function createCard(item) {
   const card = cardTemplate.cloneNode(true);
@@ -64,23 +68,21 @@ function createCard(item) {
   return card;
 }
 
-function insertCard(card) {
-  elementsList.prepend(card);
-}
-
 const addPhotoFormHandler = (e) => {
   e.preventDefault();
-  const newPhoto = {
-    name: addPhotoInputTitle.value,
-    link: addPhotoInputLink.value,
-  };
-  insertCard(createCard(newPhoto));
+
+  const card = new Card(
+    addPhotoInputLink.value,
+    addPhotoInputTitle.value,
+    CARD_TEMPLATE_SELECTOR
+  );
+  const cardElement = card.generateCard();
+  elementsList.prepend(cardElement);
+
   closePopup(popupAddPhoto);
 };
 
 addPhotoForm.addEventListener("submit", addPhotoFormHandler);
-
-initialCards.forEach((item) => insertCard(createCard(item)));
 
 const activeEscHandler = (evt) => {
   if (evt.key === "Escape") {
@@ -99,7 +101,7 @@ function setPopupButtonState(popup) {
   );
 }
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", activeEscHandler);
 }
