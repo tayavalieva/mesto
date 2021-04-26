@@ -67,3 +67,5 @@
 @import url(../blocks/popup-edit/popup-edit.css);
 @import url(../blocks/popup-edit/__input-error/popup-edit__input-error.css);
 @import url(../blocks/popup-edit/__input-error/_active/popup-edit__input-error_active.css);
+
+@import url(../blocks/card-template/card-template.css);
