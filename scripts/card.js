@@ -1,8 +1,4 @@
-import { initialCards } from "./initial-сards.js";
 import { openPopup, popupImage, popupImg, popupImgCaption } from "./index.js";
-
-const elementsList = document.querySelector(".elements");
-export const CARD_TEMPLATE_SELECTOR = "card-template";
 
 export class Card {
   constructor(image, name, cardTemplateSelector) {
@@ -12,14 +8,13 @@ export class Card {
   }
 
   //return card html template
-  // забираем размеку из HTML и клонируем элемент
+  // find HTML template and clone element
   _getTemplate() {
     const cardElement = document
       .querySelector(`.${this._cardTemplateSelector}`)
       .content.querySelector(".card")
       .cloneNode(true);
 
-    console.log(cardElement);
     return cardElement;
   }
 
@@ -67,9 +62,3 @@ export class Card {
     return this._element;
   }
 }
-
-initialCards.forEach((item) => {
-  const card = new Card(item.image, item.name, CARD_TEMPLATE_SELECTOR);
-  const cardElement = card.generateCard();
-  elementsList.prepend(cardElement);
-});
