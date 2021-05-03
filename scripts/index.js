@@ -1,5 +1,5 @@
 import { initialCards } from "./initial-сards.js";
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 import { SELECTORS } from "./selectors.js";
 import { FormValidator } from "./FormValidator.js";
 
