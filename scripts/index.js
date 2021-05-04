@@ -42,16 +42,21 @@ export const popupImgCaption = popupImage.querySelector(
 
 const CARD_TEMPLATE_SELECTOR = "card-template";
 
+const createCardElement = (imageLink, name, cardTemplateSelector) => {
+  const card = new Card(imageLink, name, cardTemplateSelector);
+  return card.generateCard();
+};
+
 const addPhotoFormHandler = (e) => {
   e.preventDefault();
 
-  const card = new Card(
-    addPhotoInputLink.value,
-    addPhotoInputTitle.value,
-    CARD_TEMPLATE_SELECTOR
+  elementsList.prepend(
+    createCardElement(
+      addPhotoInputLink.value,
+      addPhotoInputTitle.value,
+      CARD_TEMPLATE_SELECTOR
+    )
   );
-  const cardElement = card.generateCard();
-  elementsList.prepend(cardElement);
 
   closePopup(popupAddPhoto);
 };
@@ -128,7 +133,7 @@ const enableValidation = (selectors) => {
 enableValidation(SELECTORS);
 
 initialCards.forEach((item) => {
-  const card = new Card(item.image, item.name, CARD_TEMPLATE_SELECTOR);
-  const cardElement = card.generateCard();
-  elementsList.prepend(cardElement);
+  elementsList.prepend(
+    createCardElement(item.image, item.name, CARD_TEMPLATE_SELECTOR)
+  );
 });

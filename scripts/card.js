@@ -1,8 +1,8 @@
 import { openPopup, popupImage, popupImg, popupImgCaption } from "./index.js";
 
 export class Card {
-  constructor(image, name, cardTemplateSelector) {
-    this._image = image;
+  constructor(imageLink, name, cardTemplateSelector) {
+    this._imageLink = imageLink;
     this._name = name;
     this._cardTemplateSelector = cardTemplateSelector;
   }
@@ -43,7 +43,7 @@ export class Card {
   }
 
   _handleImageClick() {
-    popupImg.src = this._image;
+    popupImg.src = this._imageLink;
     popupImgCaption.textContent = this._name;
     popupImg.alt = this._name;
     openPopup(popupImage);
@@ -55,8 +55,10 @@ export class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector(".card__image").src = this._image;
-    this._element.querySelector(".card__image").alt = this._name;
+    const cardImage = this._element.querySelector(".card__image");
+
+    cardImage.src = this._imageLink;
+    cardImage.alt = this._name;
     this._element.querySelector(".card__name").textContent = this._name;
 
     return this._element;
