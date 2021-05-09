@@ -2,6 +2,7 @@ import { initialCards } from "./initial-сards.js";
 import { Card } from "./card.js";
 import { SELECTORS } from "./selectors.js";
 import { FormValidator } from "./formValidator.js";
+import Section from "./section.js";
 
 //popups
 const popupEditProfile = document.querySelector(".popup-edit");
@@ -18,7 +19,6 @@ const closePopupAddPhotoButton = popupAddPhoto.querySelector(
 const closePopupImageButton = popupImage.querySelector(".popup__close-button");
 
 const formElement = document.querySelector(".popup__form");
-const elementsList = document.querySelector(".elements");
 
 //current values
 const currentName = document.querySelector(".profile__header");
@@ -42,16 +42,11 @@ export const popupImgCaption = popupImage.querySelector(
 
 const CARD_TEMPLATE_SELECTOR = "card-template";
 
-const createCardElement = (imageLink, name, cardTemplateSelector) => {
-  const card = new Card(imageLink, name, cardTemplateSelector);
-  return card.generateCard();
-};
-
 const addPhotoFormHandler = (e) => {
   e.preventDefault();
 
-  elementsList.prepend(
-    createCardElement(
+  cardsSection.addItem(
+    new Card(
       addPhotoInputLink.value,
       addPhotoInputTitle.value,
       CARD_TEMPLATE_SELECTOR
@@ -132,8 +127,14 @@ const enableValidation = (selectors) => {
 
 enableValidation(SELECTORS);
 
-initialCards.forEach((item) => {
-  elementsList.prepend(
-    createCardElement(item.image, item.name, CARD_TEMPLATE_SELECTOR)
-  );
-});
+const cardsSection = new Section(
+  {
+    data: initialCards.map(
+      (item) => new Card(item.image, item.name, CARD_TEMPLATE_SELECTOR)
+    ),
+    renderer: (card) => card.generateCard(),
+  },
+  ".elements"
+);
+
+cardsSection.renderItems();
