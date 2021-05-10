@@ -1,10 +1,9 @@
-import { openPopup, popupImage, popupImg, popupImgCaption } from "./index.js";
-
 export class Card {
-  constructor(imageLink, name, cardTemplateSelector) {
+  constructor(imageLink, name, cardTemplateSelector, handleCardClick) {
     this._imageLink = imageLink;
     this._name = name;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   //return card html template
@@ -29,7 +28,9 @@ export class Card {
 
     this._element
       .querySelector(".card__image")
-      .addEventListener("click", () => this._handleImageClick());
+      .addEventListener("click", () =>
+        this._handleCardClick(this._imageLink, this._name)
+      ); // should trigger popupWithImage.open()
   }
 
   _handleLikeBtn() {
@@ -40,13 +41,6 @@ export class Card {
 
   _handleDeleteBtn() {
     this._element.remove();
-  }
-
-  _handleImageClick() {
-    popupImg.src = this._imageLink;
-    popupImgCaption.textContent = this._name;
-    popupImg.alt = this._name;
-    openPopup(popupImage);
   }
 
   //add card to html
