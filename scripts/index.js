@@ -12,6 +12,8 @@ const currentJob = document.querySelector(".profile__caption");
 //input elements
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
+const placeLinkInput = document.querySelector(".popup__input_type_link");
+const placeNameInput = document.querySelector(".popup__input_type_place");
 
 //Popup With Image
 const popupWithImage = new PopupWithImage(".popup-image");
@@ -27,7 +29,6 @@ const CARD_TEMPLATE_SELECTOR = "card-template";
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
 
 //Add Photo Popup
-
 //expected: {place_name: '...', photo_link: '...'}
 const addPhotoFormHandler = ({ place_name, photo_link }) => {
   cardsSection.addItem(
@@ -42,8 +43,15 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
 
 const popupAddPhoto = new PopupWithForm(
   ".popup-add-photo",
+  SELECTORS.formSelector,
   addPhotoFormHandler,
-  () => {}
+  () => {
+    //delete input values
+    placeLinkInput.value = "";
+    placeNameInput.value = "";
+    const validator = new FormValidator(SELECTORS, popupAddPhoto.getForm());
+    validator.resetValidation();
+  }
 );
 
 popupAddPhoto.setEventListeners();
@@ -52,7 +60,6 @@ openAddPhotoPopupButton.addEventListener("click", () => popupAddPhoto.open());
 
 // expected {user_name: '...', about: '...'}
 const formEditSubmitHandler = ({ user_name, about }) => {
-  console.log(user_name, about);
   currentName.textContent = user_name;
   currentJob.textContent = about;
 };
@@ -61,10 +68,13 @@ const openPopupEditButton = document.querySelector(".profile__edit-button");
 
 const popupEditProfile = new PopupWithForm(
   ".popup-edit",
+  SELECTORS.formSelector,
   formEditSubmitHandler,
   () => {
     nameInput.value = currentName.textContent;
     jobInput.value = currentJob.textContent;
+    const validator = new FormValidator(SELECTORS, popupEditProfile.getForm());
+    validator.resetValidation();
   }
 );
 
@@ -84,8 +94,6 @@ const enableValidation = (selectors) => {
   });
 };
 
-enableValidation(SELECTORS);
-
 const cardsSection = new Section(
   {
     data: initialCards.map(
@@ -101,5 +109,7 @@ const cardsSection = new Section(
   },
   ".elements"
 );
+
+enableValidation(SELECTORS);
 
 cardsSection.renderItems();

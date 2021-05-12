@@ -40,7 +40,7 @@ export class FormValidator {
   }
 
   //set button state
-  _setButtonState(hasInvalidInput) {
+  _setButtonState() {
     if (this._formElement === null || this._formElement === undefined) {
       return;
     }
@@ -48,7 +48,7 @@ export class FormValidator {
       this._selectors.submitButtonSelector
     );
 
-    if (hasInvalidInput) {
+    if (this._hasInvalidInput()) {
       buttonElement.setAttribute("disabled", true);
       buttonElement.classList.add(this._selectors.inactiveButtonClass);
     } else {
@@ -67,6 +67,12 @@ export class FormValidator {
     return inputList.some((inputElement) => !this._isValid(inputElement));
   }
 
+  resetValidation() {
+    const inputList = this._getFormInputs();
+    inputList.forEach((input) => this._hideInputError(input));
+    this._setButtonState();
+  }
+
   //set event listeners to a form
   _setEventListeners() {
     const inputList = this._getFormInputs();
@@ -76,7 +82,7 @@ export class FormValidator {
     inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkValidity(inputElement);
-        this._setButtonState(this._hasInvalidInput());
+        this._setButtonState();
       });
     });
   }
