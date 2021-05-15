@@ -21,13 +21,13 @@ class PopupWithForm extends Popup {
   _getInputValues() {
     const values = {};
     const inputs = this._getInputsArray();
-    console.log(inputs);
+
     inputs.forEach((input) => {
       values[input.name] = input.value;
     });
     //   {user_name: '...', about: '...'}
     //   {place_name: '...', photo_link: '...'}
-    console.log(JSON.stringify(values));
+
     return values;
   }
 

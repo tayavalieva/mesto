@@ -6,3 +6,8 @@ export const SELECTORS = {
   inputErrorClass: "popup__input_invalid",
   errorMessageClass: "popup__input-error_active",
 };
+
+export const userInfoSelectors = {
+  nameSelector: ".profile__header",
+  infoSelector: ".profile__caption",
+};

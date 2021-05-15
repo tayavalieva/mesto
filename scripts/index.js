@@ -1,15 +1,13 @@
 import { initialCards } from "./initial-сards.js";
 import { Card } from "./card.js";
-import { SELECTORS } from "./selectors.js";
+import { SELECTORS, userInfoSelectors } from "./selectors.js";
 import { FormValidator } from "./formValidator.js";
 import Section from "./section.js";
 import PopupWithForm from "./popupWithForm.js";
 import PopupWithImage from "./popupWithImage.js";
+import { UserInfo } from "./userInfo.js";
 
-//current values
-const currentName = document.querySelector(".profile__header");
-const currentJob = document.querySelector(".profile__caption");
-//input elements
+// //input elements
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
 const placeLinkInput = document.querySelector(".popup__input_type_link");
@@ -58,10 +56,10 @@ popupAddPhoto.setEventListeners();
 
 openAddPhotoPopupButton.addEventListener("click", () => popupAddPhoto.open());
 
-// expected {user_name: '...', about: '...'}
+const currentUser = new UserInfo(userInfoSelectors);
+
 const formEditSubmitHandler = ({ user_name, about }) => {
-  currentName.textContent = user_name;
-  currentJob.textContent = about;
+  currentUser.setUserInfo({ user_name, about });
 };
 
 const openPopupEditButton = document.querySelector(".profile__edit-button");
@@ -71,8 +69,9 @@ const popupEditProfile = new PopupWithForm(
   SELECTORS.formSelector,
   formEditSubmitHandler,
   () => {
-    nameInput.value = currentName.textContent;
-    jobInput.value = currentJob.textContent;
+    //const currentUser = new UserInfo(userInfoSelectors);
+    nameInput.value = currentUser.getUserInfo().nameSelector;
+    jobInput.value = currentUser.getUserInfo().infoSelector;
     const validator = new FormValidator(SELECTORS, popupEditProfile.getForm());
     validator.resetValidation();
   }
