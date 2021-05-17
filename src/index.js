@@ -84,15 +84,22 @@ openPopupEditButton.addEventListener("click", () => {
   popupEditProfile.open();
 });
 
-const enableValidation = (selectors) => {
-  const formList = Array.from(
-    document.querySelectorAll(selectors.formSelector)
+const popupEditProfileValidator = (selectors) => {
+  const formValidator = new FormValidator(
+    selectors,
+    popupEditProfile.getForm()
   );
-  formList.forEach((form) => {
-    const formValidator = new FormValidator(selectors, form);
-    formValidator.enableValidation();
-  });
+  formValidator.enableValidation();
 };
+
+popupEditProfileValidator(SELECTORS);
+
+const popupAddPhotoValidator = (selectors) => {
+  const formValidator = new FormValidator(selectors, popupAddPhoto.getForm());
+  formValidator.enableValidation();
+};
+
+popupAddPhotoValidator(SELECTORS);
 
 const cardsSection = new Section(
   {
@@ -109,7 +116,5 @@ const cardsSection = new Section(
   },
   ".elements"
 );
-
-enableValidation(SELECTORS);
 
 cardsSection.renderItems();
