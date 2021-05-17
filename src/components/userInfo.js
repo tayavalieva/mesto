@@ -2,18 +2,20 @@
 export class UserInfo {
   constructor(userInfoSelectors) {
     this._userInfoSelectors = userInfoSelectors;
+
+    this._userName = document.querySelector(
+      this._userInfoSelectors.nameSelector
+    );
+
+    this._userInfo = document.querySelector(
+      this._userInfoSelectors.infoSelector
+    );
   }
 
   getUserInfo() {
-    const currentName = document.querySelector(
-      this._userInfoSelectors.nameSelector
-    ).textContent;
-    const currentInfo = document.querySelector(
-      this._userInfoSelectors.infoSelector
-    ).textContent;
     const currentUser = {
-      nameSelector: currentName,
-      infoSelector: currentInfo,
+      nameSelector: this._userName.textContent,
+      infoSelector: this._userInfo.textContent,
     };
     return currentUser;
   }
@@ -21,13 +23,7 @@ export class UserInfo {
   // expected {user_name: '...', about: '...'}
 
   setUserInfo({ user_name, about }) {
-    const userName = document.querySelector(
-      this._userInfoSelectors.nameSelector
-    );
-    const userInfo = document.querySelector(
-      this._userInfoSelectors.infoSelector
-    );
-    userName.textContent = user_name;
-    userInfo.textContent = about;
+    this._userName.textContent = user_name;
+    this._userInfo.textContent = about;
   }
 }
