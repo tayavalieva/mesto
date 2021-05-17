@@ -41,6 +41,7 @@ export class Card {
 
   _handleDeleteBtn() {
     this._element.remove();
+    this._element = null;
   }
 
   //add card to html
