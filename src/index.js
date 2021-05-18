@@ -48,8 +48,7 @@ const popupAddPhoto = new PopupWithForm(
     //delete input values
     placeLinkInput.value = "";
     placeNameInput.value = "";
-    const validator = new FormValidator(SELECTORS, popupAddPhoto.getForm());
-    validator.resetValidation();
+    popupAddPhotoValidator.resetValidation();
   }
 );
 
@@ -70,11 +69,9 @@ const popupEditProfile = new PopupWithForm(
   SELECTORS.formSelector,
   formEditSubmitHandler,
   () => {
-    //const currentUser = new UserInfo(userInfoSelectors);
     nameInput.value = currentUser.getUserInfo().nameSelector;
     jobInput.value = currentUser.getUserInfo().infoSelector;
-    const validator = new FormValidator(SELECTORS, popupEditProfile.getForm());
-    validator.resetValidation();
+    popupEditProfileValidator.resetValidation();
   }
 );
 
@@ -84,22 +81,18 @@ openPopupEditButton.addEventListener("click", () => {
   popupEditProfile.open();
 });
 
-const popupEditProfileValidator = (selectors) => {
-  const formValidator = new FormValidator(
-    selectors,
-    popupEditProfile.getForm()
-  );
-  formValidator.enableValidation();
-};
+const popupEditProfileValidator = new FormValidator(
+  SELECTORS,
+  popupEditProfile.getForm()
+);
 
-popupEditProfileValidator(SELECTORS);
+popupEditProfileValidator.enableValidation();
 
-const popupAddPhotoValidator = (selectors) => {
-  const formValidator = new FormValidator(selectors, popupAddPhoto.getForm());
-  formValidator.enableValidation();
-};
-
-popupAddPhotoValidator(SELECTORS);
+const popupAddPhotoValidator = new FormValidator(
+  SELECTORS,
+  popupAddPhoto.getForm()
+);
+popupAddPhotoValidator.enableValidation();
 
 const cardsSection = new Section(
   {
