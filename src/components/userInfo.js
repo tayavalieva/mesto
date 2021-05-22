@@ -12,7 +12,7 @@ export class UserInfo {
     );
   }
 
-  getUserInfo() {
+  getInitialUserInfo() {
     const currentUser = {
       nameSelector: this._userName.textContent,
       infoSelector: this._userInfo.textContent,

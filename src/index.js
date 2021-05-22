@@ -7,12 +7,34 @@ import Section from "./components/section.js";
 import PopupWithForm from "./components/popupWithForm.js";
 import PopupWithImage from "./components/popupWithImage.js";
 import { UserInfo } from "./components/userInfo.js";
+import { Api } from "./components/Api.js";
 
 // //input elements
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
 const placeLinkInput = document.querySelector(".popup__input_type_link");
 const placeNameInput = document.querySelector(".popup__input_type_place");
+
+const initialUserName = document.querySelector(userInfoSelectors.nameSelector);
+const initialUserDescription = document.querySelector(
+  userInfoSelectors.infoSelector
+);
+const initialAvatar = document.querySelector(userInfoSelectors.avatarSelector);
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-24",
+  headers: {
+    authorization: "75448b66-8039-4414-9d9d-66beac161b1c",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getUserInfo().then((result) => {
+  console.log(result);
+  initialUserName.textContent = result.name;
+  initialUserDescription.textContent = result.about;
+  initialAvatar.src = result.avatar;
+});
 
 //Popup With Image
 const popupWithImage = new PopupWithImage(".popup-image");

@@ -10,4 +10,5 @@ export const SELECTORS = {
 export const userInfoSelectors = {
   nameSelector: ".profile__header",
   infoSelector: ".profile__caption",
+  avatarSelector: ".profile__pic",
 };
