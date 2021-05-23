@@ -19,6 +19,9 @@ export class Api {
   }
 
   getInitialCards() {
-    // ...
+    return fetch(`${this._url}/cards`, {
+      method: "GET",
+      headers: this._headers,
+    }).then(this._handlelResponse);
   }
 }

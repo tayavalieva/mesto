@@ -30,7 +30,6 @@ const api = new Api({
 });
 
 api.getUserInfo().then((result) => {
-  console.log(result);
   initialUserName.textContent = result.name;
   initialUserDescription.textContent = result.about;
   initialAvatar.src = result.avatar;
@@ -116,20 +115,24 @@ const popupAddPhotoValidator = new FormValidator(
 );
 popupAddPhotoValidator.enableValidation();
 
-const cardsSection = new Section(
-  {
-    data: initialCards.map(
-      (item) =>
-        new Card(
-          item.image,
-          item.name,
-          CARD_TEMPLATE_SELECTOR,
-          cardImageClickHandler
-        )
-    ),
-    renderer: (card) => card.generateCard(),
-  },
-  ".elements"
-);
+function renderCards(cardsList) {
+  const cardsSection = new Section(
+    {
+      data: cardsList.map(
+        (item) =>
+          new Card(
+            item.link,
+            item.name,
+            CARD_TEMPLATE_SELECTOR,
+            cardImageClickHandler
+          )
+      ),
+      renderer: (card) => card.generateCard(),
+    },
+    ".elements"
+  );
 
-cardsSection.renderItems();
+  cardsSection.renderItems();
+}
+
+api.getInitialCards().then(renderCards);
