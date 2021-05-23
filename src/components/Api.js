@@ -24,4 +24,15 @@ export class Api {
       headers: this._headers,
     }).then(this._handlelResponse);
   }
+
+  setNewUserInfo(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.user_name,
+        about: data.about,
+      }),
+    }).then(this._handlelResponse);
+  }
 }

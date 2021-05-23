@@ -11,4 +11,6 @@ export const userInfoSelectors = {
   nameSelector: ".profile__header",
   infoSelector: ".profile__caption",
   avatarSelector: ".profile__pic",
+  nameInputSelector: ".popup__input_type_name",
+  infoInputSelector: ".popup__input_type_job",
 };

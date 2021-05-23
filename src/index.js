@@ -1,25 +1,21 @@
 import "./pages/index.css";
-import { initialCards } from "./components/initial-сards.js";
 import { Card } from "./components/card.js";
 import { SELECTORS, userInfoSelectors } from "./components/selectors.js";
 import { FormValidator } from "./components/formValidator.js";
 import Section from "./components/section.js";
 import PopupWithForm from "./components/popupWithForm.js";
 import PopupWithImage from "./components/popupWithImage.js";
-import { UserInfo } from "./components/userInfo.js";
+import { UserInfoRenderer } from "./components/userInfo.js";
 import { Api } from "./components/Api.js";
 
 // //input elements
-const nameInput = document.querySelector(".popup__input_type_name");
-const jobInput = document.querySelector(".popup__input_type_job");
+
 const placeLinkInput = document.querySelector(".popup__input_type_link");
 const placeNameInput = document.querySelector(".popup__input_type_place");
 
-const initialUserName = document.querySelector(userInfoSelectors.nameSelector);
-const initialUserDescription = document.querySelector(
-  userInfoSelectors.infoSelector
-);
 const initialAvatar = document.querySelector(userInfoSelectors.avatarSelector);
+
+const currentUser = new UserInfoRenderer(userInfoSelectors);
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-24",
@@ -30,8 +26,7 @@ const api = new Api({
 });
 
 api.getUserInfo().then((result) => {
-  initialUserName.textContent = result.name;
-  initialUserDescription.textContent = result.about;
+  currentUser.renderUserInfo(result);
   initialAvatar.src = result.avatar;
 });
 
@@ -49,7 +44,7 @@ const CARD_TEMPLATE_SELECTOR = "card-template";
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
 
 //Add Photo Popup
-//expected: {place_name: '...', photo_link: '...'}
+
 const addPhotoFormHandler = ({ place_name, photo_link }) => {
   cardsSection.addItem(
     new Card(
@@ -77,10 +72,9 @@ popupAddPhoto.setEventListeners();
 
 openAddPhotoPopupButton.addEventListener("click", () => popupAddPhoto.open());
 
-const currentUser = new UserInfo(userInfoSelectors);
-
 const formEditSubmitHandler = ({ user_name, about }) => {
-  currentUser.setUserInfo({ user_name, about });
+  api.setNewUserInfo({ user_name, about });
+  currentUser.renderUserInfo({ user_name, about });
 };
 
 const openPopupEditButton = document.querySelector(".profile__edit-button");
@@ -90,8 +84,7 @@ const popupEditProfile = new PopupWithForm(
   SELECTORS.formSelector,
   formEditSubmitHandler,
   () => {
-    nameInput.value = currentUser.getUserInfo().nameSelector;
-    jobInput.value = currentUser.getUserInfo().infoSelector;
+    currentUser.fillInputsValue();
     popupEditProfileValidator.resetValidation();
   }
 );
