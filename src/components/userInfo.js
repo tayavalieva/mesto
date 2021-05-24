@@ -1,5 +1,5 @@
 //expects { nameSelector: ".profile__header", infoSelector: ".profile__caption" };
-export class UserInfoRenderer {
+export class UserInfo {
   constructor(userInfoSelectors) {
     this._userInfoSelectors = userInfoSelectors;
 
@@ -16,10 +16,13 @@ export class UserInfoRenderer {
     );
   }
 
+  setUser({ userID }) {
+    this._userID = userID;
+  }
+
   renderUserInfo({ name, about }) {
     this._userName.textContent = name;
     this._userInfo.textContent = about;
-    console.log(this._userName.textContent, this._userInfo.textContent);
   }
 
   fillInputsValue() {

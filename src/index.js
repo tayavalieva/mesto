@@ -5,7 +5,7 @@ import { FormValidator } from "./components/formValidator.js";
 import Section from "./components/section.js";
 import PopupWithForm from "./components/popupWithForm.js";
 import PopupWithImage from "./components/popupWithImage.js";
-import { UserInfoRenderer } from "./components/userInfo.js";
+import { UserInfo } from "./components/userInfo.js";
 import { Api } from "./components/Api.js";
 
 // //input elements
@@ -15,7 +15,7 @@ const placeNameInput = document.querySelector(".popup__input_type_place");
 
 const initialAvatar = document.querySelector(userInfoSelectors.avatarSelector);
 
-const currentUser = new UserInfoRenderer(userInfoSelectors);
+const currentUser = new UserInfo(userInfoSelectors);
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-24",
@@ -25,9 +25,12 @@ const api = new Api({
   },
 });
 
-api.getUserInfo().then((result) => {
-  currentUser.renderUserInfo(result);
-  initialAvatar.src = result.avatar;
+api.getInitialData().then(([userData, cardsList]) => {
+  currentUser.renderUserInfo(userData);
+
+  console.log(userData._id);
+  initialAvatar.src = userData.avatar;
+  renderCards(cardsList);
 });
 
 //Popup With Image
@@ -46,14 +49,16 @@ const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
 //Add Photo Popup
 
 const addPhotoFormHandler = ({ place_name, photo_link }) => {
-  cardsSection.addItem(
-    new Card(
-      photo_link,
-      place_name,
-      CARD_TEMPLATE_SELECTOR,
-      cardImageClickHandler
-    )
-  );
+  api.postCard({ place_name, photo_link }).then((res) => {
+    cardsSection.prependItem(
+      new Card(
+        res.link,
+        res.name,
+        CARD_TEMPLATE_SELECTOR,
+        cardImageClickHandler
+      )
+    );
+  });
 };
 
 const popupAddPhoto = new PopupWithForm(
@@ -108,24 +113,23 @@ const popupAddPhotoValidator = new FormValidator(
 );
 popupAddPhotoValidator.enableValidation();
 
+const cardsSection = new Section(
+  {
+    data: [],
+    renderer: (card) => card.generateCard(),
+  },
+  ".elements"
+);
+
 function renderCards(cardsList) {
-  const cardsSection = new Section(
-    {
-      data: cardsList.map(
-        (item) =>
-          new Card(
-            item.link,
-            item.name,
-            CARD_TEMPLATE_SELECTOR,
-            cardImageClickHandler
-          )
-      ),
-      renderer: (card) => card.generateCard(),
-    },
-    ".elements"
+  cardsList.forEach((item) =>
+    cardsSection.appendItem(
+      new Card(
+        item.link,
+        item.name,
+        CARD_TEMPLATE_SELECTOR,
+        cardImageClickHandler
+      )
+    )
   );
-
-  cardsSection.renderItems();
 }
-
-api.getInitialCards().then(renderCards);

@@ -30,7 +30,7 @@ export class Card {
       .querySelector(".card__image")
       .addEventListener("click", () =>
         this._handleCardClick(this._imageLink, this._name)
-      ); // should trigger popupWithImage.open()
+      );
   }
 
   _handleLikeBtn() {

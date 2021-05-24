@@ -11,6 +11,10 @@ export class Api {
     return res.json();
   }
 
+  getInitialData() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
+
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
@@ -32,6 +36,17 @@ export class Api {
       body: JSON.stringify({
         name: data.user_name,
         about: data.about,
+      }),
+    }).then(this._handlelResponse);
+  }
+
+  postCard({ place_name, photo_link }) {
+    return fetch(`${this._url}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: place_name,
+        link: photo_link,
       }),
     }).then(this._handlelResponse);
   }
