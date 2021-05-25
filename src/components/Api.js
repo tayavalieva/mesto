@@ -47,12 +47,12 @@ export class Api {
     }).then(this._handlelResponse);
   }
 
-  setAvatar(data) {
+  setAvatar({ link }) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatar,
+        avatar: link,
       }),
     }).then(this._handlelResponse);
   }

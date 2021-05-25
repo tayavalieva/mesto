@@ -27,7 +27,7 @@ class PopupWithForm extends Popup {
     });
     //   {user_name: '...', about: '...'}
     //   {place_name: '...', photo_link: '...'}
-
+    console.log(values);
     return values;
   }
 

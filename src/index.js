@@ -12,8 +12,7 @@ import { Api } from "./components/Api.js";
 
 const placeLinkInput = document.querySelector(".popup__input_type_link");
 const placeNameInput = document.querySelector(".popup__input_type_place");
-
-const initialAvatar = document.querySelector(userInfoSelectors.avatarSelector);
+const userAvatar = document.querySelector(userInfoSelectors.avatarSelector);
 
 const userInfo = new UserInfo(userInfoSelectors);
 
@@ -27,9 +26,29 @@ const api = new Api({
 
 api.getInitialData().then(([userData, cardsList]) => {
   userInfo.renderUserInfo(userData);
-  initialAvatar.src = userData.avatar;
+  userAvatar.src = userData.avatar;
   renderCards(cardsList);
 });
+
+//Edit Avatar Popup
+const editAvatarButton = document.querySelector(".profile__avatar-edit-button");
+
+const editAvatarFormHandler = ({ link }) => {
+  api.setAvatar({ link }).then((res) => (userAvatar.src = res.avatar));
+};
+
+const editAvatarPopup = new PopupWithForm(
+  ".popup-edit-avatar",
+  SELECTORS.formSelector,
+  editAvatarFormHandler,
+  //open handler: 1) set validator, 2) reset input value
+  () => {}
+);
+//create validator
+
+editAvatarPopup.setEventListeners();
+
+editAvatarButton.addEventListener("click", () => editAvatarPopup.open());
 
 //Popup With Image
 const popupWithImage = new PopupWithImage(".popup-image");

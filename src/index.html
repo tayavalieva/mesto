@@ -101,6 +101,43 @@
         </div>
       </div>
 
+      <div class="popup popup-edit-avatar">
+        <div class="popup__overlay popup__overlay_type_light"></div>
+        <div class="popup__container">
+          <form
+            class="popup__form"
+            id="popup_form_edit_avatar"
+            name="edit_avatar"
+            novalidate
+          >
+            <h2 class="popup__header">Обновить аватар</h2>
+            <label class="popup__label" for="popup__input_type_link">
+              <input
+                type="url"
+                placeholder="Ссылка на фото"
+                class="popup__input popup__input_type_link"
+                id="popup-edit-avatar"
+                name="link"
+                required
+              />
+              <span class="popup-edit-avatar-error popup__input-error"></span>
+            </label>
+            <button
+              class="popup__save-button button"
+              id="submit_popup-add_button"
+              type="submit"
+            >
+              Сохранить
+            </button>
+          </form>
+          <button
+            class="popup__close-button"
+            id="close_popup-add_button"
+            type="reset"
+          ></button>
+        </div>
+      </div>
+
       <div class="popup popup-add-photo">
         <div class="popup__overlay popup__overlay_type_light"></div>
         <div class="popup__container">
