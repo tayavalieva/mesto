@@ -13,7 +13,7 @@ import { Api } from "./components/Api.js";
 const placeLinkInput = document.querySelector(".popup__input_type_link");
 const placeNameInput = document.querySelector(".popup__input_type_place");
 const avatarLinkInput = document.querySelector(".popup__input_type_avatar");
-const userAvatar = document.querySelector(userInfoSelectors.avatarSelector);
+//const userAvatar = document.querySelector(userInfoSelectors.avatarSelector);
 
 const userInfo = new UserInfo(userInfoSelectors);
 
@@ -26,8 +26,8 @@ const api = new Api({
 });
 
 api.getInitialData().then(([userData, cardsList]) => {
-  userInfo.renderUserInfo(userData);
-  userAvatar.src = userData.avatar;
+  userInfo.setUser(userData);
+  userInfo.renderUserInfo();
   renderCards(cardsList);
 });
 
