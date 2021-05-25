@@ -12,6 +12,7 @@ import { Api } from "./components/Api.js";
 
 const placeLinkInput = document.querySelector(".popup__input_type_link");
 const placeNameInput = document.querySelector(".popup__input_type_place");
+const avatarLinkInput = document.querySelector(".popup__input_type_avatar");
 const userAvatar = document.querySelector(userInfoSelectors.avatarSelector);
 
 const userInfo = new UserInfo(userInfoSelectors);
@@ -41,10 +42,17 @@ const editAvatarPopup = new PopupWithForm(
   ".popup-edit-avatar",
   SELECTORS.formSelector,
   editAvatarFormHandler,
-  //open handler: 1) set validator, 2) reset input value
-  () => {}
+  () => {
+    avatarLinkInput.value = "";
+    editAvatarPopupValidator.resetValidation();
+  }
 );
-//create validator
+
+const editAvatarPopupValidator = new FormValidator(
+  SELECTORS,
+  editAvatarPopup.getForm()
+);
+editAvatarPopupValidator.enableValidation();
 
 editAvatarPopup.setEventListeners();
 
