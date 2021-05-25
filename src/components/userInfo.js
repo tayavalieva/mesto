@@ -16,13 +16,14 @@ export class UserInfo {
     );
   }
 
-  setUser({ userID }) {
-    this._userID = userID;
+  setUser(data) {
+    this._userData = data;
   }
 
-  renderUserInfo({ name, about }) {
+  renderUserInfo({ name, about, _id }) {
     this._userName.textContent = name;
     this._userInfo.textContent = about;
+    this._ownerId = _id;
   }
 
   fillInputsValue() {

@@ -15,7 +15,7 @@ const placeNameInput = document.querySelector(".popup__input_type_place");
 
 const initialAvatar = document.querySelector(userInfoSelectors.avatarSelector);
 
-const currentUser = new UserInfo(userInfoSelectors);
+const userInfo = new UserInfo(userInfoSelectors);
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-24",
@@ -26,9 +26,7 @@ const api = new Api({
 });
 
 api.getInitialData().then(([userData, cardsList]) => {
-  currentUser.renderUserInfo(userData);
-
-  console.log(userData._id);
+  userInfo.renderUserInfo(userData);
   initialAvatar.src = userData.avatar;
   renderCards(cardsList);
 });
@@ -79,7 +77,7 @@ openAddPhotoPopupButton.addEventListener("click", () => popupAddPhoto.open());
 
 const formEditSubmitHandler = ({ user_name, about }) => {
   api.setNewUserInfo({ user_name, about });
-  currentUser.renderUserInfo({ user_name, about });
+  userInfo.renderUserInfo({ user_name, about });
 };
 
 const openPopupEditButton = document.querySelector(".profile__edit-button");
@@ -89,7 +87,7 @@ const popupEditProfile = new PopupWithForm(
   SELECTORS.formSelector,
   formEditSubmitHandler,
   () => {
-    currentUser.fillInputsValue();
+    userInfo.fillInputsValue();
     popupEditProfileValidator.resetValidation();
   }
 );

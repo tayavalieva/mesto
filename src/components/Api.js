@@ -11,6 +11,13 @@ export class Api {
     return res.json();
   }
 
+  setLikes(data) {
+    return fetch(`${this._url}/cards`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._handlelResponse);
+  }
+
   getInitialData() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
@@ -36,6 +43,16 @@ export class Api {
       body: JSON.stringify({
         name: data.user_name,
         about: data.about,
+      }),
+    }).then(this._handlelResponse);
+  }
+
+  setAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
       }),
     }).then(this._handlelResponse);
   }
