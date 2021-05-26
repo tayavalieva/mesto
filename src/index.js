@@ -72,9 +72,10 @@ function cardImageClickHandler(url, text) {
   popupWithImage.open(url, text);
 }
 
-const handleCardDeleteBtn = (cardID) => {
+const handleCardDeleteBtn = (card) => {
   const deleteCardPopupSubmitHandler = () => {
-    api.deleteCard(cardID);
+    api.deleteCard(card.getID());
+    card.deleteCardElement();
   };
   const deleteCardPopup = new PopupWithSubmit(
     ".popup-delete-card",

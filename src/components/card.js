@@ -73,7 +73,10 @@ export class Card {
 
   _handleDeleteBtn() {
     //call back handle
-    this._handleDeleteCard(this._id);
+    this._handleDeleteCard(this);
+  }
+
+  deleteCardElement() {
     this._element.remove();
     this._element = null;
   }
