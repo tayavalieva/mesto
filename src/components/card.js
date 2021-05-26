@@ -1,7 +1,16 @@
 export class Card {
-  constructor(imageLink, name, cardTemplateSelector, handleCardClick) {
+  constructor(
+    imageLink,
+    name,
+    _id,
+    owner,
+    cardTemplateSelector,
+    handleCardClick
+  ) {
     this._imageLink = imageLink;
     this._name = name;
+    this._id = _id;
+    this._owner = owner;
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -15,6 +24,14 @@ export class Card {
       .cloneNode(true);
 
     return cardElement;
+  }
+
+  getID() {
+    return this._id;
+  }
+
+  getOwner() {
+    return this._owner._id;
   }
 
   _setEventListeners() {
