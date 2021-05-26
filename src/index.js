@@ -29,7 +29,6 @@ api.getInitialData().then(([userData, cardsList]) => {
   userInfo.setUser(userData);
   userInfo.renderUserInfo();
   renderCards(cardsList);
-  console.log(cardsList);
 });
 
 //Edit Avatar Popup
@@ -82,6 +81,7 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
         res.name,
         res._id,
         res.owner._id,
+        res.likes,
         CARD_TEMPLATE_SELECTOR,
         cardImageClickHandler
       )
@@ -157,6 +157,7 @@ function renderCards(cardsList) {
         item.name,
         item._id,
         item.owner._id,
+        item.likes,
         CARD_TEMPLATE_SELECTOR,
         cardImageClickHandler
       )

@@ -11,13 +11,6 @@ export class Api {
     return res.json();
   }
 
-  setLikes(data) {
-    return fetch(`${this._url}/cards`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then(this._handlelResponse);
-  }
-
   getInitialData() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
@@ -32,6 +25,13 @@ export class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
+      headers: this._headers,
+    }).then(this._handlelResponse);
+  }
+
+  setLikes(data) {
+    return fetch(`${this._url}/cards`, {
+      method: "PUT",
       headers: this._headers,
     }).then(this._handlelResponse);
   }

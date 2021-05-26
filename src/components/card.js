@@ -4,6 +4,7 @@ export class Card {
     name,
     _id,
     owner,
+    likes,
     cardTemplateSelector,
     handleCardClick
   ) {
@@ -11,6 +12,7 @@ export class Card {
     this._name = name;
     this._id = _id;
     this._owner = owner;
+    this._likes = likes;
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -72,6 +74,8 @@ export class Card {
     cardImage.src = this._imageLink;
     cardImage.alt = this._name;
     this._element.querySelector(".card__name").textContent = this._name;
+    this._element.querySelector(".card__like-counter").textContent =
+      this._likes.length;
 
     return this._element;
   }
