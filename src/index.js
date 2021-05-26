@@ -11,6 +11,7 @@ import PopupWithForm from "./components/popupWithForm.js";
 import PopupWithImage from "./components/popupWithImage.js";
 import { UserInfo } from "./components/userInfo.js";
 import { Api } from "./components/Api.js";
+import PopupWithSubmit from "./components/popupWithSubmit";
 
 // //input elements
 
@@ -71,11 +72,22 @@ function cardImageClickHandler(url, text) {
   popupWithImage.open(url, text);
 }
 
-const CARD_TEMPLATE_SELECTOR = "card-template";
+const handleCardDeleteBtn = (cardID) => {
+  const deleteCardPopupSubmitHandler = () => {
+    api.deleteCard(cardID);
+  };
+  const deleteCardPopup = new PopupWithSubmit(
+    ".popup-delete-card",
+    deleteCardPopupSubmitHandler
+  );
+  deleteCardPopup.setEventListeners();
 
-const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
+  deleteCardPopup.open();
+};
 
 //Add Photo Popup
+
+const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
 
 const addPhotoFormHandler = ({ place_name, photo_link }) => {
   api.postCard({ place_name, photo_link }).then((res) => {
@@ -88,7 +100,8 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
         res.likes,
         userInfo.getID(),
         cardSelectors,
-        cardImageClickHandler
+        cardImageClickHandler,
+        handleCardDeleteBtn
       )
     );
   });
@@ -165,7 +178,8 @@ function renderCards(cardsList) {
         item.likes,
         userInfo.getID(),
         cardSelectors,
-        cardImageClickHandler
+        cardImageClickHandler,
+        handleCardDeleteBtn
       )
     )
   );

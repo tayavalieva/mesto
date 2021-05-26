@@ -15,6 +15,13 @@ export class Api {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
+  deleteCard(cardID) {
+    return fetch(`${this._url}/cards/${cardID}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._handlelResponse);
+  }
+
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",

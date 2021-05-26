@@ -7,7 +7,8 @@ export class Card {
     likes,
     currentUserID,
     cardSelectors,
-    handleCardClick
+    handleCardClick,
+    handleDeleteCard
   ) {
     this._imageLink = imageLink;
     this._name = name;
@@ -17,6 +18,7 @@ export class Card {
     this._currentUserID = currentUserID;
     this._cardSelectors = cardSelectors;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteCard = handleDeleteCard;
   }
 
   //return card html template
@@ -70,6 +72,8 @@ export class Card {
   }
 
   _handleDeleteBtn() {
+    //call back handle
+    this._handleDeleteCard(this._id);
     this._element.remove();
     this._element = null;
   }
