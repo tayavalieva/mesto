@@ -3,17 +3,19 @@ export class Card {
     imageLink,
     name,
     _id,
-    owner,
+    ownerID,
     likes,
-    cardTemplateSelector,
+    currentUserID,
+    cardSelectors,
     handleCardClick
   ) {
     this._imageLink = imageLink;
     this._name = name;
     this._id = _id;
-    this._owner = owner;
+    this._ownerID = ownerID;
     this._likes = likes;
-    this._cardTemplateSelector = cardTemplateSelector;
+    this._currentUserID = currentUserID;
+    this._cardSelectors = cardSelectors;
     this._handleCardClick = handleCardClick;
   }
 
@@ -21,7 +23,7 @@ export class Card {
   // find HTML template and clone element
   _getTemplate() {
     const cardElement = document
-      .querySelector(`.${this._cardTemplateSelector}`)
+      .querySelector(this._cardSelectors.cardTemplateSelector)
       .content.querySelector(".card")
       .cloneNode(true);
 
@@ -33,7 +35,16 @@ export class Card {
   }
 
   getOwner() {
-    return this._owner._id;
+    return this._ownerID;
+  }
+
+  _renderDeleteBtn() {
+    const deleteBtn = this._element.querySelector(
+      this._cardSelectors.cardDeleteBtn
+    );
+    if (this._ownerID !== this._currentUserID) {
+      deleteBtn.remove();
+    }
   }
 
   _setEventListeners() {
@@ -67,10 +78,12 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+
     this._setEventListeners();
+    this._renderDeleteBtn();
+    console.log(this._id, this._ownerID, this._currentUserID);
 
     const cardImage = this._element.querySelector(".card__image");
-
     cardImage.src = this._imageLink;
     cardImage.alt = this._name;
     this._element.querySelector(".card__name").textContent = this._name;

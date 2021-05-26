@@ -14,3 +14,8 @@ export const userInfoSelectors = {
   nameInputSelector: ".popup__input_type_name",
   infoInputSelector: ".popup__input_type_job",
 };
+
+export const cardSelectors = {
+  cardTemplateSelector: ".card-template",
+  cardDeleteBtn: ".card__delete-icon",
+};

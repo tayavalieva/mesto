@@ -1,6 +1,10 @@
 import "./pages/index.css";
 import { Card } from "./components/card.js";
-import { SELECTORS, userInfoSelectors } from "./components/selectors.js";
+import {
+  SELECTORS,
+  userInfoSelectors,
+  cardSelectors,
+} from "./components/selectors.js";
 import { FormValidator } from "./components/formValidator.js";
 import Section from "./components/section.js";
 import PopupWithForm from "./components/popupWithForm.js";
@@ -82,7 +86,8 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
         res._id,
         res.owner._id,
         res.likes,
-        CARD_TEMPLATE_SELECTOR,
+        userInfo.getID(),
+        cardSelectors,
         cardImageClickHandler
       )
     );
@@ -158,7 +163,8 @@ function renderCards(cardsList) {
         item._id,
         item.owner._id,
         item.likes,
-        CARD_TEMPLATE_SELECTOR,
+        userInfo.getID(),
+        cardSelectors,
         cardImageClickHandler
       )
     )
