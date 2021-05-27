@@ -1,0 +1,16 @@
+.popup-delete-card__container {
+  width: 430px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  padding: 34px 0 0;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1023px) {
+  .popup-delete-card__container {
+    width: 282px;
+    padding-top: 25px;
+  }
+}

@@ -72,4 +72,7 @@
 @import url(../blocks/popup-edit/__input-error/popup-edit__input-error.css);
 @import url(../blocks/popup-edit/__input-error/_active/popup-edit__input-error_active.css);
 
+@import url(../blocks/popup-delete-card/popup-delete-card.css);
+@import url(../blocks/popup-delete-card/__container/popup-delete-card__container.css);
+
 @import url(../blocks/card-template/card-template.css);

@@ -9,7 +9,7 @@ class PopupWithSubmit extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    const submitButton = this._popup.querySelector(".popup__submit-button");
+    const submitButton = this._popup.querySelector(".popup__save-button");
 
     submitButton.addEventListener("click", (e) => {
       e.preventDefault();
