@@ -18,7 +18,6 @@ import PopupWithSubmit from "./components/popupWithSubmit";
 const placeLinkInput = document.querySelector(".popup__input_type_link");
 const placeNameInput = document.querySelector(".popup__input_type_place");
 const avatarLinkInput = document.querySelector(".popup__input_type_avatar");
-//const userAvatar = document.querySelector(userInfoSelectors.avatarSelector);
 
 const userInfo = new UserInfo(userInfoSelectors);
 
@@ -40,7 +39,13 @@ api.getInitialData().then(([userData, cardsList]) => {
 const editAvatarButton = document.querySelector(".profile__avatar-edit-button");
 
 const editAvatarFormHandler = ({ link }) => {
-  api.setAvatar({ link }).then((res) => (userAvatar.src = res.avatar));
+  editAvatarPopup.setLoading(true);
+  api
+    .setAvatar({ link })
+    .then((res) => {
+      userInfo.renderAvatar(res);
+    })
+    .finally(editAvatarPopup.setLoading(false));
 };
 
 const editAvatarPopup = new PopupWithForm(
@@ -50,7 +55,8 @@ const editAvatarPopup = new PopupWithForm(
   () => {
     avatarLinkInput.value = "";
     editAvatarPopupValidator.resetValidation();
-  }
+  },
+  "Сохранить"
 );
 
 const editAvatarPopupValidator = new FormValidator(
@@ -90,13 +96,11 @@ const handleCardDeleteBtn = (card) => {
 const handleCardLikeBtn = (card) => {
   if (card.isLikedByCurrentUser()) {
     api.deleteLike(card.getID()).then((res) => {
-      console.log(res);
       card.setLikes(res.likes);
       card.renderLikes();
     });
   } else {
     api.setLikes(card.getID()).then((res) => {
-      console.log(res);
       card.setLikes(res.likes);
       card.renderLikes();
     });
@@ -108,22 +112,26 @@ const handleCardLikeBtn = (card) => {
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
 
 const addPhotoFormHandler = ({ place_name, photo_link }) => {
-  api.postCard({ place_name, photo_link }).then((res) => {
-    cardsSection.prependItem(
-      new Card(
-        res.link,
-        res.name,
-        res._id,
-        res.owner._id,
-        res.likes,
-        userInfo.getID(),
-        cardSelectors,
-        cardImageClickHandler,
-        handleCardDeleteBtn,
-        handleCardLikeBtn
-      )
-    );
-  });
+  popupAddPhoto.setLoading(true);
+  api
+    .postCard({ place_name, photo_link })
+    .then((res) => {
+      cardsSection.prependItem(
+        new Card(
+          res.link,
+          res.name,
+          res._id,
+          res.owner._id,
+          res.likes,
+          userInfo.getID(),
+          cardSelectors,
+          cardImageClickHandler,
+          handleCardDeleteBtn,
+          handleCardLikeBtn
+        )
+      );
+    })
+    .finally(popupAddPhoto.setLoading(false));
 };
 
 const popupAddPhoto = new PopupWithForm(
@@ -135,7 +143,8 @@ const popupAddPhoto = new PopupWithForm(
     placeLinkInput.value = "";
     placeNameInput.value = "";
     popupAddPhotoValidator.resetValidation();
-  }
+  },
+  "Создать"
 );
 
 popupAddPhoto.setEventListeners();
@@ -143,8 +152,14 @@ popupAddPhoto.setEventListeners();
 openAddPhotoPopupButton.addEventListener("click", () => popupAddPhoto.open());
 
 const formEditSubmitHandler = ({ user_name, about }) => {
-  api.setNewUserInfo({ user_name, about });
-  userInfo.renderUserInfo({ user_name, about });
+  popupEditProfile.setLoading(true);
+  api
+    .setNewUserInfo({ user_name, about })
+    .then((res) => {
+      userInfo.setUser(res);
+      userInfo.renderUserInfo({ user_name, about });
+    })
+    .finally(popupEditProfile.setLoading(false));
 };
 
 const openPopupEditButton = document.querySelector(".profile__edit-button");
@@ -156,7 +171,8 @@ const popupEditProfile = new PopupWithForm(
   () => {
     userInfo.fillInputsValue();
     popupEditProfileValidator.resetValidation();
-  }
+  },
+  "Сохранить"
 );
 
 popupEditProfile.setEventListeners();

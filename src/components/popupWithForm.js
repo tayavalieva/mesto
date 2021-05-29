@@ -1,11 +1,18 @@
 import Popup from "./popup.js";
 
 class PopupWithForm extends Popup {
-  constructor(popupSelector, formSelector, submitHandler, openHandler) {
+  constructor(
+    popupSelector,
+    formSelector,
+    submitHandler,
+    openHandler,
+    defaultSubmitButtonText
+  ) {
     super(popupSelector);
     this._submitHandler = submitHandler;
     this._openHandler = openHandler;
     this._form = this._popup.querySelector(formSelector);
+    this._defaultSubmitButtonText = defaultSubmitButtonText;
   }
 
   open() {
@@ -27,8 +34,17 @@ class PopupWithForm extends Popup {
     });
     //   {user_name: '...', about: '...'}
     //   {place_name: '...', photo_link: '...'}
-    console.log(values);
+
     return values;
+  }
+
+  setLoading(isLoading) {
+    const submitButton = this._popup.querySelector(".popup__save-button");
+    if (isLoading) {
+      submitButton.textContent = "Сохранение...";
+    } else {
+      submitButton.textContent = this._defaultSubmitButtonText;
+    }
   }
 
   getForm() {

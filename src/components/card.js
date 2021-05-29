@@ -112,16 +112,6 @@ export class Card {
 
     this._setEventListeners();
     this._renderDeleteBtn();
-    console.log(
-      "Card ID:",
-      this._id,
-      "Cards owner ID:",
-      this._ownerID,
-      "Current user ID:",
-      this._currentUserID,
-      "likes:",
-      this._likes
-    );
 
     const cardImage = this._element.querySelector(".card__image");
     cardImage.src = this._imageLink;

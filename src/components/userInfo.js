@@ -27,6 +27,10 @@ export class UserInfo {
     this._avatar = avatar;
   }
 
+  renderAvatar({ avatar }) {
+    this._avatarElement.src = avatar;
+  }
+
   renderUserInfo() {
     this._userNameElement.textContent = this._name;
     this._infoElement.textContent = this._about;

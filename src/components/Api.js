@@ -4,6 +4,10 @@ export class Api {
     this._headers = options.headers;
   }
 
+  //   _handlelResponse(res) {
+  //     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  //   }
+
   _handlelResponse(res) {
     if (!res.ok) {
       return Promise.reject(`Error: ${res.status}`);
