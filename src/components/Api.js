@@ -36,9 +36,16 @@ export class Api {
     }).then(this._handlelResponse);
   }
 
-  setLikes(data) {
-    return fetch(`${this._url}/cards`, {
+  setLikes(cardID) {
+    return fetch(`${this._url}/cards/likes/${cardID}`, {
       method: "PUT",
+      headers: this._headers,
+    }).then(this._handlelResponse);
+  }
+
+  deleteLike(cardID) {
+    return fetch(`${this._url}/cards/likes/${cardID}`, {
+      method: "DELETE",
       headers: this._headers,
     }).then(this._handlelResponse);
   }

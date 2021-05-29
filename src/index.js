@@ -86,6 +86,23 @@ const handleCardDeleteBtn = (card) => {
   deleteCardPopup.open();
 };
 
+//isLiked card's method
+const handleCardLikeBtn = (card) => {
+  if (card.isLikedByCurrentUser()) {
+    api.deleteLike(card.getID()).then((res) => {
+      console.log(res);
+      card.setLikes(res.likes);
+      card.renderLikes();
+    });
+  } else {
+    api.setLikes(card.getID()).then((res) => {
+      console.log(res);
+      card.setLikes(res.likes);
+      card.renderLikes();
+    });
+  }
+};
+
 //Add Photo Popup
 
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
@@ -102,7 +119,8 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
         userInfo.getID(),
         cardSelectors,
         cardImageClickHandler,
-        handleCardDeleteBtn
+        handleCardDeleteBtn,
+        handleCardLikeBtn
       )
     );
   });
@@ -180,7 +198,8 @@ function renderCards(cardsList) {
         userInfo.getID(),
         cardSelectors,
         cardImageClickHandler,
-        handleCardDeleteBtn
+        handleCardDeleteBtn,
+        handleCardLikeBtn
       )
     )
   );
