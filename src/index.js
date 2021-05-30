@@ -65,14 +65,14 @@ const editAvatarPopupValidator = new FormValidator(
 );
 editAvatarPopupValidator.enableValidation();
 
-editAvatarPopup.setEventListeners();
+//editAvatarPopup.setEventListeners();
 
 editAvatarButton.addEventListener("click", () => editAvatarPopup.open());
 
 //Popup With Image
 const popupWithImage = new PopupWithImage(".popup-image");
 
-popupWithImage.setEventListeners();
+//popupWithImage.setEventListeners();
 
 function cardImageClickHandler(url, text) {
   popupWithImage.open(url, text);
@@ -83,11 +83,12 @@ const handleCardDeleteBtn = (card) => {
     api.deleteCard(card.getID());
     card.deleteCardElement();
   };
+
   const deleteCardPopup = new PopupWithSubmit(
     ".popup-delete-card",
     deleteCardPopupSubmitHandler
   );
-  deleteCardPopup.setEventListeners();
+  //deleteCardPopup.setEventListeners();
 
   deleteCardPopup.open();
 };
@@ -147,7 +148,7 @@ const popupAddPhoto = new PopupWithForm(
   "Создать"
 );
 
-popupAddPhoto.setEventListeners();
+//popupAddPhoto.setEventListeners();
 
 openAddPhotoPopupButton.addEventListener("click", () => popupAddPhoto.open());
 
@@ -175,7 +176,7 @@ const popupEditProfile = new PopupWithForm(
   "Сохранить"
 );
 
-popupEditProfile.setEventListeners();
+//popupEditProfile.setEventListeners();
 
 openPopupEditButton.addEventListener("click", () => {
   popupEditProfile.open();
