@@ -3,7 +3,6 @@ import Popup from "./popup.js";
 class PopupWithSubmit extends Popup {
   constructor(popupSelector, submitHandler) {
     super(popupSelector);
-    // this._submitBtnSelector = submitBtnSelector;
     this._submitHandler = submitHandler;
   }
 

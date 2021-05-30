@@ -56,10 +56,6 @@ export class Card {
       .querySelector(".like-button")
       .addEventListener("click", () => this._handleCardLikeBtn(this));
 
-    // this._element
-    //   .querySelector(".like-button")
-    //   .addEventListener("click", () => this._handleLikeElement());
-
     this._element
       .querySelector(".card__delete-icon")
       .addEventListener("click", () => this._handleDeleteBtn());

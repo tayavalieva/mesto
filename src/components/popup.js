@@ -5,10 +5,10 @@ export default class Popup {
     this._popup = document.querySelector(popupSelector);
   }
 
-  open = () => {
+  open() {
     this._popup.classList.add("popup_opened");
     this._setEventListeners();
-  };
+  }
 
   close = () => {
     this._popup.classList.remove("popup_opened");
