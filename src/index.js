@@ -45,7 +45,7 @@ const editAvatarFormHandler = ({ link }) => {
     .then((res) => {
       userInfo.renderAvatar(res);
     })
-    .finally(editAvatarPopup.setLoading(false));
+    .finally(() => editAvatarPopup.setLoading(false));
 };
 
 const editAvatarPopup = new PopupWithForm(
@@ -126,7 +126,7 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
         )
       );
     })
-    .finally(popupAddPhoto.setLoading(false));
+    .finally(() => popupAddPhoto.setLoading(false));
 };
 
 const popupAddPhoto = new PopupWithForm(
@@ -152,7 +152,7 @@ const formEditSubmitHandler = ({ user_name, about }) => {
       userInfo.setUser(res);
       userInfo.renderUserInfo({ user_name, about });
     })
-    .finally(popupEditProfile.setLoading(false));
+    .finally(() => popupEditProfile.setLoading(false));
 };
 
 const openPopupEditButton = document.querySelector(".profile__edit-button");
