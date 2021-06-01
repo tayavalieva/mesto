@@ -80,16 +80,21 @@ function cardImageClickHandler(url, text) {
 }
 
 const handleCardDeleteBtn = (card) => {
-  const deleteCardPopupSubmitHandler = () => {
+  const deleteCardPopupSubmitHandler = (popup) => {
+    popup.setLoading(true);
     api
       .deleteCard(card.getID())
-      .then(() => card.deleteCardElement())
-      .catch((error) => console.log("Card Delete Error"));
+      .then(() => {
+        card.deleteCardElement();
+        popup.close();
+      })
+      .catch((error) => console.log("Card Delete Error"))
+      .finally(() => popup.setLoading(false));
   };
-
   const deleteCardPopup = new PopupWithSubmit(
     ".popup-delete-card",
-    deleteCardPopupSubmitHandler
+    deleteCardPopupSubmitHandler,
+    "Да"
   );
 
   deleteCardPopup.open();
