@@ -47,6 +47,7 @@ const editAvatarFormHandler = ({ link }) => {
     .setAvatar({ link })
     .then((res) => {
       userInfo.renderAvatar(res);
+      editAvatarPopup.close();
     })
     .catch((error) => console.log("Avatar render error"))
     .finally(() => editAvatarPopup.setLoading(false));
@@ -117,6 +118,20 @@ const handleCardLikeBtn = (card) => {
 
 //Add Photo Popup
 
+const createCard = (res) =>
+  new Card(
+    res.link,
+    res.name,
+    res._id,
+    res.owner._id,
+    res.likes,
+    userInfo.getID(),
+    cardSelectors,
+    cardImageClickHandler,
+    handleCardDeleteBtn,
+    handleCardLikeBtn
+  );
+
 const openAddPhotoPopupButton = document.querySelector(".profile__add-button");
 
 const addPhotoFormHandler = ({ place_name, photo_link }) => {
@@ -124,20 +139,8 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
   api
     .postCard({ place_name, photo_link })
     .then((res) => {
-      cardsSection.prependItem(
-        new Card(
-          res.link,
-          res.name,
-          res._id,
-          res.owner._id,
-          res.likes,
-          userInfo.getID(),
-          cardSelectors,
-          cardImageClickHandler,
-          handleCardDeleteBtn,
-          handleCardLikeBtn
-        )
-      );
+      cardsSection.prependItem(createCard(res));
+      popupAddPhoto.close();
     })
     .catch((error) => console.log("Post Card Error"))
     .finally(() => popupAddPhoto.setLoading(false));
@@ -165,6 +168,7 @@ const formEditSubmitHandler = ({ user_name, about }) => {
     .then((res) => {
       userInfo.setUser(res);
       userInfo.renderUserInfo({ user_name, about });
+      popupEditProfile.close();
     })
     .catch((error) => console.log("Set New User Error"))
     .finally(() => popupEditProfile.setLoading(false));
@@ -209,20 +213,5 @@ const cardsSection = new Section(
 );
 
 function renderCards(cardsList) {
-  cardsList.forEach((item) =>
-    cardsSection.appendItem(
-      new Card(
-        item.link,
-        item.name,
-        item._id,
-        item.owner._id,
-        item.likes,
-        userInfo.getID(),
-        cardSelectors,
-        cardImageClickHandler,
-        handleCardDeleteBtn,
-        handleCardLikeBtn
-      )
-    )
-  );
+  cardsList.forEach((item) => cardsSection.appendItem(createCard(item)));
 }

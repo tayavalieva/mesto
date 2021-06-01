@@ -54,7 +54,6 @@ class PopupWithForm extends Popup {
   _formSubmitHandler = (e) => {
     e.preventDefault();
     this._submitHandler(this._getInputValues());
-    this.close();
   };
 
   _removeEventListeners() {

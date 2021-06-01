@@ -15,7 +15,6 @@ class PopupWithSubmit extends Popup {
   _handleSubmitBtn = (e) => {
     e.preventDefault();
     this._submitHandler();
-    this.close();
   };
 
   _setEventListeners() {
