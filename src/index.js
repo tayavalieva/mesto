@@ -29,11 +29,14 @@ const api = new Api({
   },
 });
 
-api.getInitialData().then(([userData, cardsList]) => {
-  userInfo.setUser(userData);
-  userInfo.renderUserInfo();
-  renderCards(cardsList);
-});
+api
+  .getInitialData()
+  .then(([userData, cardsList]) => {
+    userInfo.setUser(userData);
+    userInfo.renderUserInfo();
+    renderCards(cardsList);
+  })
+  .catch((error) => console.log("Render error"));
 
 //Edit Avatar Popup
 const editAvatarButton = document.querySelector(".profile__avatar-edit-button");
@@ -45,6 +48,7 @@ const editAvatarFormHandler = ({ link }) => {
     .then((res) => {
       userInfo.renderAvatar(res);
     })
+    .catch((error) => console.log("Avatar render error"))
     .finally(() => editAvatarPopup.setLoading(false));
 };
 
@@ -76,7 +80,10 @@ function cardImageClickHandler(url, text) {
 
 const handleCardDeleteBtn = (card) => {
   const deleteCardPopupSubmitHandler = () => {
-    api.deleteCard(card.getID()).then(() => card.deleteCardElement());
+    api
+      .deleteCard(card.getID())
+      .then(() => card.deleteCardElement())
+      .catch((error) => console.log("Card Delete Error"));
   };
 
   const deleteCardPopup = new PopupWithSubmit(
@@ -90,15 +97,21 @@ const handleCardDeleteBtn = (card) => {
 //isLiked card's method
 const handleCardLikeBtn = (card) => {
   if (card.isLikedByCurrentUser()) {
-    api.deleteLike(card.getID()).then((res) => {
-      card.setLikes(res.likes);
-      card.renderLikes();
-    });
+    api
+      .deleteLike(card.getID())
+      .then((res) => {
+        card.setLikes(res.likes);
+        card.renderLikes();
+      })
+      .catch((error) => console.log("Remove Like from Card Error"));
   } else {
-    api.setLikes(card.getID()).then((res) => {
-      card.setLikes(res.likes);
-      card.renderLikes();
-    });
+    api
+      .setLikes(card.getID())
+      .then((res) => {
+        card.setLikes(res.likes);
+        card.renderLikes();
+      })
+      .catch((error) => console.log("Like Card Error"));
   }
 };
 
@@ -126,6 +139,7 @@ const addPhotoFormHandler = ({ place_name, photo_link }) => {
         )
       );
     })
+    .catch((error) => console.log("Post Card Error"))
     .finally(() => popupAddPhoto.setLoading(false));
 };
 
@@ -152,6 +166,7 @@ const formEditSubmitHandler = ({ user_name, about }) => {
       userInfo.setUser(res);
       userInfo.renderUserInfo({ user_name, about });
     })
+    .catch((error) => console.log("Set New User Error"))
     .finally(() => popupEditProfile.setLoading(false));
 };
 
