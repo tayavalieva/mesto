@@ -1,17 +1,17 @@
-import "./pages/index.css";
-import { Card } from "./components/card.js";
+import "./index.css";
+import { Card } from "../components/card.js";
 import {
   SELECTORS,
   userInfoSelectors,
   cardSelectors,
-} from "./components/selectors.js";
-import { FormValidator } from "./components/formValidator.js";
-import Section from "./components/section.js";
-import PopupWithForm from "./components/popupWithForm.js";
-import PopupWithImage from "./components/popupWithImage.js";
-import { UserInfo } from "./components/userInfo.js";
-import { Api } from "./components/Api.js";
-import PopupWithSubmit from "./components/popupWithSubmit";
+} from "../components/selectors.js";
+import { FormValidator } from "../components/formValidator.js";
+import Section from "../components/section.js";
+import PopupWithForm from "../components/popupWithForm.js";
+import PopupWithImage from "../components/popupWithImage.js";
+import { UserInfo } from "../components/userInfo.js";
+import { Api } from "../components/Api.js";
+import PopupWithSubmit from "../components/popupWithSubmit";
 
 // //input elements
 
